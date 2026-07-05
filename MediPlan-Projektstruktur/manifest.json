@@ -1,0 +1,10 @@
+{
+  "name": "MediPlan",
+  "short_name": "MediPlan",
+  "description": "Moderne Medikamenten- und Gesundheitsverwaltung",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f7fafc",
+  "theme_color": "#16a34a",
+  "icons": []
+}
