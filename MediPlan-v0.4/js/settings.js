@@ -1,0 +1,1 @@
+const Settings={init(){this.set(Store.get("theme","light"));themeToggle.onclick=()=>this.set(document.body.classList.contains("dark")?"light":"dark")},set(t){document.body.classList.toggle("dark",t==="dark");Store.set("theme",t);themeToggle.textContent=t==="dark"?"☀️":"🌙"}};

@@ -1,0 +1,15 @@
+const Dashboard={
+init(){today.textContent=new Intl.DateTimeFormat("de-DE",{weekday:"long",day:"2-digit",month:"long",year:"numeric"}).format(new Date());this.render()},
+render(){
+Intake.load();const meds=Intake.meds,items=Intake.items,open=items.filter(i=>i.status==="open"),done=items.length-open.length,pct=items.length?Math.round(done/items.length*100):100;
+openCount.textContent=open.length;progressText.textContent=done+" von "+items.length+" erledigt";progressPercent.textContent=pct+" %";progressBar.style.width=pct+"%";
+heroTitle.textContent=open.length===0?"Alles erledigt":open.length===1?"Heute noch 1 Einnahme":"Heute noch "+open.length+" Einnahmen";
+heroText.textContent=open.length===0?"Alle heutigen Einnahmen wurden bestätigt.":"Alles ist vorbereitet. Bestätige einfach die nächste Einnahme.";
+warningCount.textContent=meds.filter(m=>m.stock<=m.min).length;stockStatus.textContent=Number(warningCount.textContent)?"Prüfen":"OK";
+if(open.length){const n=open.slice().sort((a,b)=>a.time.localeCompare(b.time))[0],m=meds.find(x=>x.id===n.medicationId);nextTime.textContent=n.time;nextMed.innerHTML=`<div class="pill ${m.pill}"></div><strong>${m.name} ${m.strength}</strong><span>${n.amount} ${m.unit}</span>`}else{nextTime.textContent="✓";nextMed.innerHTML="<strong>Für heute erledigt</strong>"}
+cards.innerHTML=open.map(i=>{const m=meds.find(x=>x.id===i.medicationId);return `<article class="card"><div class="card-top"><span class="time">${i.time}</span><span>Bestand: ${m.stock}</span></div><div class="pill-wrap"><div class="pill ${m.pill}"></div></div><h3>${m.name} ${m.strength}</h3><p>${i.amount} ${m.unit}</p><div class="stock-track"><div style="width:${Math.min(m.stock,100)}%"></div></div><button class="take" data-id="${i.id}">Jetzt einnehmen</button></article>`}).join("");
+allDone.classList.toggle("hidden",open.length!==0);
+log.innerHTML=items.slice().sort((a,b)=>a.time.localeCompare(b.time)).map(i=>{const m=meds.find(x=>x.id===i.medicationId),ct=i.confirmedAt?new Date(i.confirmedAt).toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"}):"";return `<div class="log-row"><strong>${i.time}</strong><div><b>${m.name} ${m.strength}</b><br>${i.amount} ${m.unit}</div><div class="${i.status==="done"?"ok":"open"}">${i.status==="done"?"✔ "+ct:"Offen"}</div></div>`}).join("");
+document.querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>Intake.confirm(b.dataset.id));
+}
+};

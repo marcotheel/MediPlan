@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#16a34a">
+<title>MediPlan</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/light.css">
+<link rel="stylesheet" href="css/dark.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div class="app-shell">
+<header class="app-header">
+  <button class="square-btn">☰</button>
+  <div class="brand"><div class="logo">💚</div><div><small>MEDIPLAN</small><h1>Guten Morgen, Mama 👋</h1><p id="today"></p></div></div>
+  <button id="themeToggle" class="square-btn">🌙</button>
+</header>
+
+<main>
+<section class="hero">
+  <div>
+    <small>DEIN TAG</small>
+    <h2 id="heroTitle">Heute noch 3 Einnahmen</h2>
+    <p id="heroText">Alles ist vorbereitet. Bestätige einfach die nächste Einnahme.</p>
+    <div class="progress-head"><strong id="progressText">0 von 3 erledigt</strong><span id="progressPercent">0 %</span></div>
+    <div class="progress-track"><div id="progressBar"></div></div>
+    <button id="resetBtn" class="secondary">Testdaten zurücksetzen</button>
+  </div>
+  <div class="hero-side">
+    <div class="next-card">
+      <span>Nächste Einnahme</span>
+      <strong id="nextTime" class="next-time">08:00</strong>
+      <div id="nextMed"></div>
+    </div>
+    <div class="stats">
+      <div><b>💊</b><strong id="openCount">3</strong><span>Offen</span></div>
+      <div><b>📅</b><strong>1</strong><span>Termin</span></div>
+      <div><b>📦</b><strong id="stockStatus">OK</strong><span>Bestand</span></div>
+      <div><b>⚠️</b><strong id="warningCount">0</strong><span>Hinweise</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head"><div><small>JETZT WICHTIG</small><h2>Offene Einnahmen</h2></div><button id="showLog" class="chip">Protokoll</button></div>
+  <div id="cards" class="cards"></div>
+  <div id="allDone" class="done hidden"><div>✅</div><div><h3>Alles erledigt</h3><p>Alle heutigen Einnahmen wurden bestätigt.</p></div></div>
+</section>
+
+<section id="logSection" class="section hidden">
+  <div class="section-head"><div><small>HEUTE</small><h2>Einnahmeprotokoll</h2></div><button id="hideLog" class="chip">Schließen</button></div>
+  <div id="log" class="log"></div>
+</section>
+
+<section class="info-grid">
+  <article><div>📅</div><div><h3>Nächster Termin</h3><p>Hausarzt heute um 15:30 Uhr</p></div></article>
+  <article><div>🆘</div><div><h3>Notfall</h3><p>Medikamente und Kontakte schnell öffnen.</p></div></article>
+</section>
+</main>
+
+<div id="toast" class="toast"></div>
+<nav class="bottom-nav">
+  <button class="active">🏠<span>Start</span></button>
+  <button id="navIntake">💊<span>Einnahmen</span></button>
+  <button>📦<span>Schrank</span></button>
+  <button>📅<span>Kalender</span></button>
+  <button>⋯<span>Mehr</span></button>
+</nav>
+</div>
+<script src="js/storage.js"></script>
+<script src="js/data.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/intake.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
