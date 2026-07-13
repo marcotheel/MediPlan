@@ -1,8 +1,9 @@
 # Changelog
 
-## v0.4.0
-- Einnahmelogik
-- Bestandsabzug
-- Tagesfortschritt
-- Protokoll
-- Reset für Testdaten
+## v0.4.1
+- Navigation funktionsfähig
+- Einnahmen-Seite
+- Medikamentenschrank
+- Kalender
+- Mehr-Seite
+- Notfallbereich

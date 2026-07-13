@@ -1,3 +1,3 @@
-# MediPlan v0.4
+# MediPlan v0.4.1
 
-Einnahmen bestätigen, Fortschritt, Bestandsabzug, Tagesprotokoll und lokale Speicherung.
+Navigation und Hauptbereiche funktionsfähig.
