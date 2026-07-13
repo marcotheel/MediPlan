@@ -1,1 +1,11 @@
-{"name":"MediPlan","short_name":"MediPlan","start_url":"./index.html","display":"standalone","background_color":"#f7fafc","theme_color":"#16a34a","icons":[]}
+{
+  "name": "MediPlan",
+  "short_name": "MediPlan",
+  "description": "Medikamenten- und Gesundheitsverwaltung",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#06111f",
+  "theme_color": "#16a34a",
+  "icons": []
+}

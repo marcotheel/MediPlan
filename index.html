@@ -1,46 +1,77 @@
 <!doctype html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#16a34a">
-<title>MediPlan</title>
-<link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/light.css">
-<link rel="stylesheet" href="css/dark.css">
-<link rel="stylesheet" href="css/responsive.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#16a34a">
+  <meta name="description" content="MediPlan – Medikamenten- und Gesundheitsverwaltung">
+  <title>MediPlan</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/light.css">
+  <link rel="stylesheet" href="css/dark.css">
+  <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-<div class="app-shell">
-<header class="app-header">
-  <button id="menuBtn" class="square-btn">☰</button>
-  <div class="brand"><div class="logo">💚</div><div><small>MEDIPLAN</small><h1 id="pageTitle">Guten Morgen, Mama 👋</h1><p id="today"></p></div></div>
-  <button id="themeToggle" class="square-btn">🌙</button>
-</header>
+  <div id="app" class="app-shell">
+    <header class="app-header">
+      <button id="menuButton" class="square-button" type="button" aria-label="Menü öffnen">☰</button>
 
-<main>
-<section id="view-dashboard" class="view active-view">
-<section class="hero"><div><small>DEIN TAG</small><h2 id="heroTitle">Heute noch 3 Einnahmen</h2><p id="heroText">Alles ist vorbereitet. Bestätige einfach die nächste Einnahme.</p><div class="progress-head"><strong id="progressText">0 von 3 erledigt</strong><span id="progressPercent">0 %</span></div><div class="progress-track"><div id="progressBar"></div></div><button id="resetBtn" class="secondary">Testdaten zurücksetzen</button></div><div class="hero-side"><div class="next-card"><span>Nächste Einnahme</span><strong id="nextTime" class="next-time">08:00</strong><div id="nextMed"></div></div><div class="stats"><div><b>💊</b><strong id="openCount">3</strong><span>Offen</span></div><div><b>📅</b><strong>1</strong><span>Termin</span></div><div><b>📦</b><strong id="stockStatus">OK</strong><span>Bestand</span></div><div><b>⚠️</b><strong id="warningCount">0</strong><span>Hinweise</span></div></div></div></section>
-<section class="section"><div class="section-head"><div><small>JETZT WICHTIG</small><h2>Offene Einnahmen</h2></div><button id="showLog" class="chip">Protokoll</button></div><div id="cards" class="cards"></div><div id="allDone" class="done hidden"><div>✅</div><div><h3>Alles erledigt</h3><p>Alle heutigen Einnahmen wurden bestätigt.</p></div></div></section>
-<section class="info-grid"><article id="appointmentCard" class="clickable"><div>📅</div><div><h3>Nächster Termin</h3><p>Hausarzt heute um 15:30 Uhr</p></div></article><article id="emergencyCard" class="clickable"><div>🆘</div><div><h3>Notfall</h3><p>Medikamente und Kontakte schnell öffnen.</p></div></article></section>
-</section>
-<section id="view-intake" class="view"><div class="page-card"><div class="section-head"><div><small>HEUTE</small><h2>Einnahmen</h2></div><button class="back-btn">← Zurück</button></div><div id="intakePageCards" class="cards"></div><div id="intakePageDone" class="done hidden"><div>✅</div><div><h3>Alles erledigt</h3></div></div><div class="section-head"><div><small>PROTOKOLL</small><h2>Heute bestätigt</h2></div></div><div id="log" class="log"></div></div></section>
-<section id="view-cabinet" class="view"><div class="page-card"><div class="section-head"><div><small>BESTAND</small><h2>Medikamentenschrank</h2></div><button class="back-btn">← Zurück</button></div><div id="cabinetList" class="cabinet-list"></div></div></section>
-<section id="view-calendar" class="view"><div class="page-card"><div class="section-head"><div><small>TERMINE</small><h2>Kalender</h2></div><button class="back-btn">← Zurück</button></div><div class="timeline"><article><time>Heute · 15:30</time><h3>Hausarzt</h3><p>Dr. Thomas Müller</p></article><article><time>Morgen · 09:00</time><h3>Zahnarzt</h3><p>Kontrolltermin</p></article></div></div></section>
-<section id="view-more" class="view"><div class="page-card"><div class="section-head"><div><small>WEITERE FUNKTIONEN</small><h2>Mehr</h2></div><button class="back-btn">← Zurück</button></div><div class="menu-list"><button data-open="emergency">🆘 Notfallbereich <span>›</span></button><button>❤️ Gesundheitswerte <span>›</span></button><button>🔔 Erinnerungen <span>›</span></button><button>⚙️ Einstellungen <span>›</span></button><button>🔒 Admin-Bereich <span>›</span></button></div></div></section>
-<section id="view-emergency" class="view"><div class="page-card"><div class="section-head"><div><small>NOTFALL</small><h2>Wichtige Informationen</h2></div><button class="back-btn">← Zurück</button></div><div class="emergency-grid"><article><h3>💊 Medikamente</h3><p>Ramipril 5 mg<br>Metformin 850 mg<br>Vitamin D 1000 IE</p></article><article><h3>⚠️ Allergien</h3><p>Keine hinterlegt</p></article><article><h3>☎️ Notfallkontakt</h3><p>Noch nicht hinterlegt</p></article><article><h3>👨‍⚕️ Hausarzt</h3><p>Dr. Thomas Müller</p></article></div></div></section>
-</main>
+      <div class="brand">
+        <div class="brand-logo">✚</div>
+        <div>
+          <span class="brand-name">MediPlan</span>
+          <h1 id="pageTitle">Guten Morgen, Mama 👋</h1>
+          <p id="todayLabel"></p>
+        </div>
+      </div>
 
-<div id="toast" class="toast"></div>
-<nav class="bottom-nav"><button data-view="dashboard" class="nav-btn active">🏠<span>Start</span></button><button data-view="intake" class="nav-btn">💊<span>Einnahmen</span></button><button data-view="cabinet" class="nav-btn">📦<span>Schrank</span></button><button data-view="calendar" class="nav-btn">📅<span>Kalender</span></button><button data-view="more" class="nav-btn">⋯<span>Mehr</span></button></nav>
-</div>
-<script src="js/storage.js"></script>
-<script src="js/data.js"></script>
-<script src="js/settings.js"></script>
-<script src="js/intake.js"></script>
-<script src="js/dashboard.js"></script>
-<script src="js/router.js"></script>
-<script src="js/app.js"></script>
+      <button id="themeButton" class="square-button" type="button" aria-label="Darstellung wechseln">🌙</button>
+    </header>
+
+    <main id="mainContent">
+      <section id="view-dashboard" class="view active-view"></section>
+      <section id="view-intakes" class="view"></section>
+      <section id="view-cabinet" class="view"></section>
+      <section id="view-calendar" class="view"></section>
+      <section id="view-more" class="view"></section>
+      <section id="view-emergency" class="view"></section>
+      <section id="view-admin-login" class="view"></section>
+      <section id="view-admin" class="view"></section>
+      <section id="view-import" class="view"></section>
+      <section id="view-settings" class="view"></section>
+    </main>
+
+    <div id="modalRoot"></div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <nav class="bottom-nav" aria-label="Hauptnavigation">
+      <button class="nav-button active" data-route="dashboard"><span>🏠</span><small>Start</small></button>
+      <button class="nav-button" data-route="intakes"><span>💊</span><small>Einnahmen</small></button>
+      <button class="nav-button" data-route="cabinet"><span>📦</span><small>Schrank</small></button>
+      <button class="nav-button" data-route="calendar"><span>📅</span><small>Kalender</small></button>
+      <button class="nav-button" data-route="more"><span>⋯</span><small>Mehr</small></button>
+    </nav>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+  <script src="js/core/storage.js"></script>
+  <script src="js/core/data.js"></script>
+  <script src="js/core/ui.js"></script>
+  <script src="js/core/router.js"></script>
+
+  <script src="js/modules/dashboard.js"></script>
+  <script src="js/modules/intakes.js"></script>
+  <script src="js/modules/cabinet.js"></script>
+  <script src="js/modules/calendar.js"></script>
+  <script src="js/modules/more.js"></script>
+  <script src="js/modules/emergency.js"></script>
+  <script src="js/modules/admin.js"></script>
+  <script src="js/modules/importer.js"></script>
+  <script src="js/modules/settings.js"></script>
+
+  <script src="js/app.js"></script>
 </body>
 </html>

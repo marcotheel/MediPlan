@@ -1,9 +1,14 @@
 # Changelog
 
-## v0.4.1
-- Navigation funktionsfähig
-- Einnahmen-Seite
-- Medikamentenschrank
-- Kalender
-- Mehr-Seite
-- Notfallbereich
+## v1.0.0
+
+- Alle Hauptbereiche funktionsfähig
+- Admin-Bereich ergänzt
+- Medikamentenverwaltung ergänzt
+- Kalender ergänzt
+- Notfallbereich ergänzt
+- OCR-Import ergänzt
+- Barcode/DataMatrix-Scan ergänzt
+- Backup ergänzt
+- Einstellungen ergänzt
+- PWA-Cache aktualisiert
