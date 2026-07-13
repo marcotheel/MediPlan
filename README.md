@@ -1,32 +1,23 @@
-# MediPlan v1.0.0
+# MediPlan v0.5.0 – Corporate Design
 
-Vollständige statische PWA für GitHub Pages.
+Diese Version vereinheitlicht den kompletten Markenauftritt von MediPlan.
 
-## Enthalten
+## Neu
 
-- Dashboard
-- Einnahmen bestätigen
-- Tagesfortschritt
-- Einnahmeprotokoll
-- Bestandsabzug
-- Medikamentenschrank
-- Kalender mit Terminen
-- Notfallbereich
-- Admin-Bereich mit PIN
-- Medikamente anlegen, bearbeiten und löschen
-- Personendaten verwalten
-- Foto-OCR mit Tesseract.js
-- Barcode/DataMatrix-Scan, sofern der Browser `BarcodeDetector` unterstützt
-- Admin-Freigabe für importierte Medikamente
-- Light- und Dark-Mode
-- Schriftgröße
-- Backup Export/Import
-- PWA/Offline-Grundfunktion
+- offizielles MediPlan-Logo und Marken-Icon
+- Corporate-Farbpalette Türkis, Grün, Blau und Dunkelblau
+- einheitliche Karten, Buttons, Statusfarben und Navigation
+- überarbeiteter Light- und Dark-Mode
+- PWA-App-Icons in 192 × 192 und 512 × 512
+- Apple-Touch-Icon
+- Browser-Favicon
+- Windows-Icon `assets/icons/MediPlan.ico`
+- aktualisiertes Manifest und Service-Worker-Cache
+
+## Funktionale Basis
+
+Alle Funktionen aus der bisherigen vollständigen MediPlan-Version bleiben enthalten.
 
 ## Admin-PIN
 
 `1234`
-
-## Installation
-
-Den kompletten Inhalt dieses Ordners in das GitHub-Repository kopieren und vorhandene Dateien ersetzen.

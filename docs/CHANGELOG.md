@@ -1,14 +1,11 @@
 # Changelog
 
-## v1.0.0
+## v0.5.0
 
-- Alle Hauptbereiche funktionsfähig
-- Admin-Bereich ergänzt
-- Medikamentenverwaltung ergänzt
-- Kalender ergänzt
-- Notfallbereich ergänzt
-- OCR-Import ergänzt
-- Barcode/DataMatrix-Scan ergänzt
-- Backup ergänzt
-- Einstellungen ergänzt
-- PWA-Cache aktualisiert
+- offizielles Corporate Design integriert
+- Logo und Marken-Icon erstellt
+- Farbpalette auf alle UI-Komponenten angewendet
+- Light- und Dark-Mode vereinheitlicht
+- PWA-Icons und Windows-ICO ergänzt
+- Manifest und Service Worker aktualisiert
+- Corporate-Design-Dokumentation ergänzt

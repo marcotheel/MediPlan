@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "mediplan-v1-0-0";
+const CACHE_NAME = "mediplan-v0-5-0-corporate";
 const ASSETS = [
   "./","./index.html","./manifest.json",
   "./css/base.css","./css/light.css","./css/dark.css","./css/responsive.css",
@@ -7,7 +7,9 @@ const ASSETS = [
   "./js/modules/dashboard.js","./js/modules/intakes.js","./js/modules/cabinet.js",
   "./js/modules/calendar.js","./js/modules/more.js","./js/modules/emergency.js",
   "./js/modules/admin.js","./js/modules/importer.js","./js/modules/settings.js",
-  "./js/app.js"
+  "./js/app.js",
+  "./assets/brand/mediplan-logo.svg","./assets/brand/mediplan-mark.svg",
+  "./assets/icons/icon-192.png","./assets/icons/icon-512.png","./assets/icons/icon-32.png"
 ];
 
 self.addEventListener("install", event => {

@@ -1,10 +1,10 @@
 
 :root {
   --font: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --green: #22c55e;
-  --green-dark: #16a34a;
-  --blue: #3b82f6;
-  --violet: #8b5cf6;
+  --green: #34c759;
+  --green-dark: #00a99d;
+  --blue: #0077cc;
+  --violet: #0d1b2a;
   --orange: #f59e0b;
   --red: #ef4444;
   --radius-sm: 14px;
@@ -408,4 +408,70 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
   padding: 14px 16px;
   border-radius: 14px;
   margin-bottom: 16px;
+}
+
+/* MediPlan Corporate Design v0.5 */
+:root {
+  --brand-teal: #00a99d;
+  --brand-green: #34c759;
+  --brand-blue: #0077cc;
+  --brand-navy: #0d1b2a;
+  --brand-gray: #6b7280;
+  --brand-light: #f1f5f9;
+  --brand-white: #ffffff;
+  --success-soft: #e7f8ee;
+  --info-soft: #e7f3fd;
+  --warning-soft: #fff4df;
+  --danger-soft: #feeceb;
+}
+
+.brand-logo {
+  padding: 4px;
+  overflow: hidden;
+  background: transparent !important;
+}
+.brand-logo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.brand-name {
+  color: var(--brand-teal);
+}
+.primary-button,
+.nav-button.active,
+.admin-tab.active {
+  background: linear-gradient(135deg, var(--brand-teal), var(--brand-blue));
+}
+.primary-button:hover,
+.nav-button.active:hover {
+  filter: brightness(1.06);
+}
+.card,
+.list-card,
+.timeline-item,
+.emergency-card,
+.menu-item,
+.page-card,
+.next-card,
+.stat-card {
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+.card:hover,
+.list-card:hover,
+.timeline-item:hover,
+.menu-item:hover {
+  transform: translateY(-2px);
+}
+.stat-card:nth-child(1) { border-top: 4px solid var(--brand-teal); }
+.stat-card:nth-child(2) { border-top: 4px solid var(--brand-blue); }
+.stat-card:nth-child(3) { border-top: 4px solid var(--brand-green); }
+.stat-card:nth-child(4) { border-top: 4px solid var(--orange); }
+.status-ok { color: var(--brand-teal); }
+.progress-bar,
+.stock-bar {
+  background: linear-gradient(90deg, var(--brand-teal), var(--brand-green));
+}
+.time-badge {
+  color: var(--brand-teal);
 }

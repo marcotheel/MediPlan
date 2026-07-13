@@ -1,11 +1,24 @@
 {
-  "name": "MediPlan",
+  "name": "MediPlan – Dein Gesundheitsbegleiter",
   "short_name": "MediPlan",
-  "description": "Medikamenten- und Gesundheitsverwaltung",
+  "description": "Sichere und einfache Medikamenten- und Gesundheitsverwaltung.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#06111f",
-  "theme_color": "#16a34a",
-  "icons": []
+  "background_color": "#071522",
+  "theme_color": "#00a99d",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }

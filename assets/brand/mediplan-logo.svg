@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" role="img" aria-labelledby="title">
+<title>MediPlan – Dein Gesundheitsbegleiter</title>
+<defs>
+  <linearGradient id="bag" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#34c759"/>
+    <stop offset="0.48" stop-color="#00b4a6"/>
+    <stop offset="1" stop-color="#0077cc"/>
+  </linearGradient>
+</defs>
+<g transform="translate(8 10)">
+  <rect x="8" y="35" width="150" height="125" rx="34" fill="url(#bag)"/>
+  <path d="M55 38V25c0-13 10-23 23-23h19c13 0 23 10 23 23v13" fill="none" stroke="#087b71" stroke-width="13" stroke-linecap="round"/>
+  <rect x="68" y="63" width="30" height="70" rx="7" fill="#fff"/>
+  <rect x="48" y="83" width="70" height="30" rx="7" fill="#fff"/>
+  <path d="M69 101h11l6-16 10 32 8-16h12" fill="none" stroke="#008f83" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="rotate(-35 137 136)">
+    <rect x="112" y="123" width="64" height="26" rx="13" fill="#fff"/>
+    <path d="M144 123h19a13 13 0 010 26h-19z" fill="#34c759"/>
+  </g>
+</g>
+<text x="194" y="92" font-family="Segoe UI,Arial,sans-serif" font-size="76" font-weight="800" fill="#0d1b2a">Medi<tspan fill="#00a99d">Plan</tspan></text>
+<text x="198" y="136" font-family="Segoe UI,Arial,sans-serif" font-size="28" fill="#667085">Dein Gesundheitsbegleiter</text>
+</svg>

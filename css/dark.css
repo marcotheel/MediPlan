@@ -29,3 +29,16 @@ body.dark .primary-button, body.dark .nav-button.active, body.dark .admin-tab.ac
 }
 body.dark .secondary-button, body.dark .chip-button { background: rgba(148,163,184,.18); color: #f8fafc; }
 body.dark .danger-button { background: #b91c1c; color: #fff; }
+
+body.dark {
+  background:
+    radial-gradient(circle at top left, rgba(0,169,157,.16), transparent 32rem),
+    radial-gradient(circle at top right, rgba(0,119,204,.18), transparent 34rem),
+    #071522;
+}
+body.dark .hero {
+  background: linear-gradient(135deg, rgba(13,27,42,.96), rgba(0,77,92,.82));
+}
+body.dark .brand-name {
+  color: #61d8cf;
+}

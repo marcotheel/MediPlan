@@ -24,3 +24,17 @@ body {
 .primary-button, .nav-button.active, .admin-tab.active { background: var(--green-dark); color: #fff; }
 .secondary-button, .chip-button { background: #e2e8f0; color: #0f172a; }
 .danger-button { background: var(--red); color: #fff; }
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(0,169,157,.14), transparent 32rem),
+    radial-gradient(circle at top right, rgba(0,119,204,.14), transparent 34rem),
+    #f5f8fb;
+}
+.hero {
+  background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(231,248,238,.90));
+}
+.square-button,
+.bottom-nav {
+  border-color: rgba(0,169,157,.14);
+}
