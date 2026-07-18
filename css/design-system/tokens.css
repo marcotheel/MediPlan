@@ -1,0 +1,66 @@
+/* MediPlan Design System – MDS-01: Design Tokens */
+:root {
+  /* Brand */
+  --mds-color-primary: #00A99D;
+  --mds-color-primary-hover: #008F86;
+  --mds-color-secondary: #34C759;
+  --mds-color-accent: #0077CC;
+  --mds-color-navy: #0D1B2A;
+
+  /* Status */
+  --mds-color-success: #22A447;
+  --mds-color-warning: #F59E0B;
+  --mds-color-danger: #EF4444;
+  --mds-color-info: #0EA5E9;
+
+  /* Neutral */
+  --mds-color-white: #FFFFFF;
+  --mds-color-gray-50: #F8FAFC;
+  --mds-color-gray-100: #F1F5F9;
+  --mds-color-gray-200: #E2E8F0;
+  --mds-color-gray-400: #94A3B8;
+  --mds-color-gray-500: #64748B;
+  --mds-color-gray-700: #334155;
+  --mds-color-gray-900: #0F172A;
+
+  /* Typography */
+  --mds-font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mds-font-size-xs: 0.75rem;
+  --mds-font-size-sm: 0.875rem;
+  --mds-font-size-md: 1rem;
+  --mds-font-size-lg: 1.125rem;
+  --mds-font-size-xl: 1.5rem;
+  --mds-font-size-2xl: 2rem;
+  --mds-font-size-hero: clamp(2.35rem, 6vw, 4.8rem);
+
+  /* Spacing – 4px system */
+  --mds-space-1: 0.25rem;
+  --mds-space-2: 0.5rem;
+  --mds-space-3: 0.75rem;
+  --mds-space-4: 1rem;
+  --mds-space-5: 1.25rem;
+  --mds-space-6: 1.5rem;
+  --mds-space-8: 2rem;
+  --mds-space-10: 2.5rem;
+
+  /* Radius */
+  --mds-radius-sm: 0.875rem;
+  --mds-radius-md: 1.25rem;
+  --mds-radius-lg: 1.75rem;
+  --mds-radius-xl: 2.25rem;
+  --mds-radius-pill: 999px;
+
+  /* Shadows */
+  --mds-shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --mds-shadow-md: 0 18px 50px rgba(15, 23, 42, 0.12);
+  --mds-shadow-lg: 0 24px 70px rgba(15, 23, 42, 0.16);
+
+  /* Motion */
+  --mds-duration-fast: 160ms;
+  --mds-duration-normal: 240ms;
+  --mds-easing: cubic-bezier(.2,.8,.2,1);
+
+  /* Accessibility */
+  --mds-control-min-size: 48px;
+  --mds-focus-ring: 0 0 0 4px rgba(0, 169, 157, 0.25);
+}

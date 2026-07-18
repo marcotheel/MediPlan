@@ -1,12 +1,20 @@
 
-const CACHE_NAME = "mediplan-v0-5-0-corporate";
+const CACHE_NAME = "mediplan-v0-5-1";
 const ASSETS = [
   "./","./index.html","./manifest.json",
+  "./css/design-system/tokens.css",
+  "./css/design-system/components.css",
+  "./css/design-system/icons.css",
+  "./css/design-system/motion.css",
+  "./css/design-system/accessibility.css",
   "./css/base.css","./css/light.css","./css/dark.css","./css/responsive.css",
   "./js/core/storage.js","./js/core/data.js","./js/core/ui.js","./js/core/router.js",
   "./js/modules/dashboard.js","./js/modules/intakes.js","./js/modules/cabinet.js",
   "./js/modules/calendar.js","./js/modules/more.js","./js/modules/emergency.js",
   "./js/modules/admin.js","./js/modules/importer.js","./js/modules/settings.js",
+  "./assets/icons/ui-icons.svg",
+  "./js/components/components.js",
+  "./js/utils/validators.js",
   "./js/app.js",
   "./assets/brand/mediplan-logo.svg","./assets/brand/mediplan-mark.svg",
   "./assets/icons/icon-192.png","./assets/icons/icon-512.png","./assets/icons/icon-32.png"

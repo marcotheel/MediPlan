@@ -1,23 +1,26 @@
-# MediPlan v0.5.0 – Corporate Design
+# MediPlan v0.5.1
 
-Diese Version vereinheitlicht den kompletten Markenauftritt von MediPlan.
+## Status
 
-## Neu
+Corporate Design und MediPlan Design System sind fertiggestellt.
 
-- offizielles MediPlan-Logo und Marken-Icon
-- Corporate-Farbpalette Türkis, Grün, Blau und Dunkelblau
-- einheitliche Karten, Buttons, Statusfarben und Navigation
-- überarbeiteter Light- und Dark-Mode
-- PWA-App-Icons in 192 × 192 und 512 × 512
-- Apple-Touch-Icon
-- Browser-Favicon
-- Windows-Icon `assets/icons/MediPlan.ico`
-- aktualisiertes Manifest und Service-Worker-Cache
+## Enthalten
 
-## Funktionale Basis
-
-Alle Funktionen aus der bisherigen vollständigen MediPlan-Version bleiben enthalten.
+- funktionierende MediPlan-Kernbereiche
+- vollständiges Corporate Design
+- MediPlan Design System (MDS)
+- Komponentenbibliothek
+- MediPlan Coding Standard (MCS)
+- standardisiertes SVG-Iconset
+- Light- und Dark-Mode
+- Accessibility- und Motion-Layer
+- Tests-, Releases- und Design-Struktur
+- PWA-App-Icons und Windows-ICO
 
 ## Admin-PIN
 
 `1234`
+
+## Test
+
+Siehe `tests/manual/TESTPLAN-v0.5.1.md`.

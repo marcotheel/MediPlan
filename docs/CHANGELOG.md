@@ -1,11 +1,18 @@
 # Changelog
 
+## v0.5.1
+
+- MediPlan Design System finalisiert
+- Design Tokens ausgelagert
+- einheitliche Komponentenklassen ergänzt
+- standardisiertes SVG-Iconset ergänzt
+- reduzierte Animationen und Accessibility-Layer ergänzt
+- Coding Standard dokumentiert
+- Ordner `tests`, `releases` und `design` ergänzt
+- manuelle Testcheckliste ergänzt
+- Service Worker um neue Designsystem-Dateien erweitert
+
 ## v0.5.0
 
-- offizielles Corporate Design integriert
-- Logo und Marken-Icon erstellt
-- Farbpalette auf alle UI-Komponenten angewendet
-- Light- und Dark-Mode vereinheitlicht
-- PWA-Icons und Windows-ICO ergänzt
-- Manifest und Service Worker aktualisiert
-- Corporate-Design-Dokumentation ergänzt
+- Corporate Design integriert
+- Logo, App-Icons und Windows-ICO ergänzt

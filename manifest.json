@@ -1,7 +1,7 @@
 {
   "name": "MediPlan – Dein Gesundheitsbegleiter",
   "short_name": "MediPlan",
-  "description": "Sichere und einfache Medikamenten- und Gesundheitsverwaltung.",
+  "description": "MediPlan – sicherer, einfacher und persönlicher Gesundheitsbegleiter.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

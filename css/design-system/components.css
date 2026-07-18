@@ -1,0 +1,84 @@
+/* MediPlan Design System – MDS-03 to MDS-07 */
+.mds-button {
+  min-height: var(--mds-control-min-size);
+  border: 0;
+  border-radius: var(--mds-radius-md);
+  padding: 0 var(--mds-space-5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mds-space-2);
+  font-weight: 900;
+  transition:
+    transform var(--mds-duration-fast) var(--mds-easing),
+    filter var(--mds-duration-fast) var(--mds-easing),
+    box-shadow var(--mds-duration-fast) var(--mds-easing);
+}
+.mds-button:hover { transform: translateY(-1px); filter: brightness(1.04); }
+.mds-button:active { transform: translateY(0) scale(.99); }
+.mds-button--primary {
+  color: white;
+  background: linear-gradient(135deg, var(--mds-color-primary), var(--mds-color-accent));
+  box-shadow: 0 12px 28px rgba(0, 169, 157, .22);
+}
+.mds-button--secondary {
+  color: var(--mds-color-gray-900);
+  background: var(--mds-color-gray-200);
+}
+.mds-button--danger {
+  color: white;
+  background: var(--mds-color-danger);
+}
+.mds-button--icon {
+  width: var(--mds-control-min-size);
+  padding: 0;
+}
+
+.mds-card {
+  border-radius: var(--mds-radius-lg);
+  padding: var(--mds-space-5);
+  border: 1px solid rgba(148, 163, 184, .2);
+  box-shadow: var(--mds-shadow-md);
+}
+
+.mds-input {
+  min-height: var(--mds-control-min-size);
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, .45);
+  border-radius: var(--mds-radius-md);
+  padding: 0 var(--mds-space-4);
+  color: inherit;
+  background: transparent;
+}
+textarea.mds-input { min-height: 8rem; padding-block: var(--mds-space-3); }
+
+.mds-field {
+  display: grid;
+  gap: var(--mds-space-2);
+}
+.mds-field > label { font-weight: 850; }
+
+.mds-badge {
+  min-height: 2rem;
+  border-radius: var(--mds-radius-pill);
+  padding-inline: var(--mds-space-3);
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--mds-font-size-sm);
+  font-weight: 900;
+}
+.mds-badge--success { color: #12612a; background: #dcfce7; }
+.mds-badge--warning { color: #854d0e; background: #fef3c7; }
+.mds-badge--danger { color: #991b1b; background: #fee2e2; }
+.mds-badge--info { color: #075985; background: #e0f2fe; }
+
+.mds-dialog {
+  width: min(640px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  border-radius: var(--mds-radius-xl);
+  padding: var(--mds-space-6);
+}
+
+.mds-stack { display: grid; gap: var(--mds-space-4); }
+.mds-cluster { display: flex; flex-wrap: wrap; gap: var(--mds-space-3); align-items: center; }
