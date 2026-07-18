@@ -1,0 +1,96 @@
+
+/* MediPlan v0.5.2 – Navigation */
+.bottom-nav {
+  min-height: 82px;
+  padding: 8px;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.nav-button {
+  position: relative;
+  min-height: 66px;
+  padding: 8px 6px 10px;
+  color: #526174;
+  transition:
+    color var(--mds-duration-fast) var(--mds-easing),
+    background var(--mds-duration-fast) var(--mds-easing),
+    transform var(--mds-duration-fast) var(--mds-easing);
+}
+
+.nav-button:hover {
+  transform: translateY(-1px);
+}
+
+.nav-button .mds-icon {
+  width: 1.55rem;
+  height: 1.55rem;
+}
+
+.nav-button small {
+  color: inherit;
+  font-size: .72rem;
+  font-weight: 850;
+}
+
+.nav-button.active {
+  background: linear-gradient(135deg, var(--mds-color-primary), var(--mds-color-secondary));
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(0, 169, 157, .24);
+}
+
+.nav-button.active::after {
+  content: "";
+  position: absolute;
+  left: 24%;
+  right: 24%;
+  bottom: 4px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.92);
+}
+
+body.dark .bottom-nav {
+  background: rgba(10, 24, 39, .96);
+  border-color: rgba(148, 163, 184, .24);
+}
+
+body.dark .nav-button {
+  color: #cbd5e1;
+}
+
+body.dark .nav-button:hover {
+  color: #ffffff;
+  background: rgba(148, 163, 184, .09);
+}
+
+body.dark .nav-button.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #00a99d, #28c65a);
+}
+
+body.dark .nav-button.active small,
+body.dark .nav-button.active .mds-icon {
+  color: #ffffff;
+}
+
+@media (max-width: 680px) {
+  .bottom-nav {
+    min-height: 72px;
+    padding: 6px;
+  }
+
+  .nav-button {
+    min-height: 58px;
+    border-radius: 18px;
+  }
+
+  .nav-button .mds-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+
+  .nav-button small {
+    font-size: .64rem;
+  }
+}

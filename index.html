@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/light.css">
   <link rel="stylesheet" href="css/dark.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/navigation.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
@@ -54,11 +56,26 @@
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <nav class="bottom-nav" aria-label="Hauptnavigation">
-      <button class="nav-button active" data-route="dashboard"><span>🏠</span><small>Start</small></button>
-      <button class="nav-button" data-route="intakes"><span>💊</span><small>Einnahmen</small></button>
-      <button class="nav-button" data-route="cabinet"><span>📦</span><small>Schrank</small></button>
-      <button class="nav-button" data-route="calendar"><span>📅</span><small>Kalender</small></button>
-      <button class="nav-button" data-route="more"><span>⋯</span><small>Mehr</small></button>
+      <button class="nav-button active" data-route="dashboard">
+        <svg class="mds-icon" aria-hidden="true"><use href="assets/icons/ui-icons.svg#icon-home"></use></svg>
+        <small>Start</small>
+      </button>
+      <button class="nav-button" data-route="intakes">
+        <svg class="mds-icon" aria-hidden="true"><use href="assets/icons/ui-icons.svg#icon-pill"></use></svg>
+        <small>Einnahmen</small>
+      </button>
+      <button class="nav-button" data-route="cabinet">
+        <svg class="mds-icon" aria-hidden="true"><use href="assets/icons/ui-icons.svg#icon-box"></use></svg>
+        <small>Schrank</small>
+      </button>
+      <button class="nav-button" data-route="calendar">
+        <svg class="mds-icon" aria-hidden="true"><use href="assets/icons/ui-icons.svg#icon-calendar"></use></svg>
+        <small>Kalender</small>
+      </button>
+      <button class="nav-button" data-route="more">
+        <svg class="mds-icon" aria-hidden="true"><use href="assets/icons/ui-icons.svg#icon-menu"></use></svg>
+        <small>Mehr</small>
+      </button>
     </nav>
   </div>
 

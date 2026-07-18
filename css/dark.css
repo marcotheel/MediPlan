@@ -42,3 +42,24 @@ body.dark .hero {
 body.dark .brand-name {
   color: #61d8cf;
 }
+
+
+/* v0.5.2 contrast fix */
+body.dark .bottom-nav,
+body.dark .bottom-nav button,
+body.dark .bottom-nav small {
+  color: #cbd5e1;
+}
+
+body.dark .bottom-nav .nav-button.active,
+body.dark .bottom-nav .nav-button.active small {
+  color: #ffffff !important;
+}
+
+body.dark .dashboard-row h3,
+body.dark .dashboard-panel h2,
+body.dark .dashboard-stat strong,
+body.dark .dashboard-next-med,
+body.dark .dashboard-next-time {
+  color: #f8fafc;
+}

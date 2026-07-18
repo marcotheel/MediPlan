@@ -3,76 +3,153 @@ const DashboardModule = {
   render() {
     const meds = DataStore.get("medications");
     const intakes = DataStore.getTodayIntakes();
-    const open = intakes.filter(i => i.status === "open");
+    const events = DataStore.get("events");
+
+    const open = intakes.filter(item => item.status === "open")
+      .sort((a, b) => a.scheduledTime.localeCompare(b.scheduledTime));
     const done = intakes.length - open.length;
     const percent = intakes.length ? Math.round(done / intakes.length * 100) : 100;
-    const warnings = meds.filter(m => m.stock <= m.minStock).length;
-    const next = open.slice().sort((a,b) => a.scheduledTime.localeCompare(b.scheduledTime))[0];
-    const nextMed = next ? meds.find(m => m.id === next.medicationId) : null;
+    const todayEvents = events
+      .filter(event => event.date === DataStore.today())
+      .sort((a,b) => a.time.localeCompare(b.time));
+
+    const lowStock = meds
+      .filter(med => med.stock <= Math.max(med.minStock, 12))
+      .sort((a,b) => a.stock - b.stock);
+
+    const next = open[0];
+    const nextMed = next ? meds.find(med => med.id === next.medicationId) : null;
+    const warningCount = meds.filter(med => med.stock <= med.minStock).length;
 
     document.getElementById("view-dashboard").innerHTML = `
-      <section class="hero">
-        <div>
-          <p class="eyebrow">Dein Tag</p>
-          <h2>${open.length ? `Heute noch ${open.length} Einnahme${open.length===1?"":"n"}` : "Alles erledigt"}</h2>
-          <p>${open.length ? "Alles ist vorbereitet. Bestätige einfach die nächste Einnahme." : "Alle heutigen Einnahmen wurden bestätigt."}</p>
+      <section class="dashboard-overview mds-enter">
+        <article class="dashboard-next">
+          <div class="dashboard-next-copy">
+            <div class="dashboard-next-label">
+              ${Components.icon("calendar")}
+              <span>Nächste Einnahme</span>
+            </div>
+            <strong class="dashboard-next-time">${next ? next.scheduledTime : "✓"}</strong>
+            <h2 class="dashboard-next-med">
+              ${nextMed ? `${UI.escape(nextMed.name)} ${UI.escape(nextMed.strength)}` : "Für heute erledigt"}
+            </h2>
+            <p class="dashboard-next-dose">
+              ${nextMed ? `${next.amount} ${UI.escape(nextMed.unit)}` : "Keine Einnahme mehr offen"}
+            </p>
+            ${next ? `<button class="primary-button" data-intake-id="${next.id}">Jetzt einnehmen ✓</button>` : ""}
+          </div>
+          <div class="dashboard-next-visual">
+            ${nextMed ? UI.pill(nextMed) : "✅"}
+          </div>
+        </article>
+
+        <article class="dashboard-stat">
+          ${Components.icon("calendar")}
+          <strong>${todayEvents.length}</strong>
+          <p>Termine heute</p>
+        </article>
+
+        <article class="dashboard-stat">
+          ${Components.icon("heart")}
+          <strong>${done} / ${intakes.length}</strong>
+          <p>Einnahmen erledigt</p>
+        </article>
+
+        <article class="dashboard-stat">
+          ${Components.icon("menu")}
+          <strong>${warningCount}</strong>
+          <p>Hinweise offen</p>
+        </article>
+
+        <article class="dashboard-stat">
+          ${Components.icon("box")}
+          <strong>${lowStock.length}</strong>
+          <p>Bestände niedrig</p>
+        </article>
+      </section>
+
+      <section class="dashboard-grid mds-enter">
+        <article class="dashboard-panel">
+          <div class="dashboard-panel-head">
+            <div class="dashboard-panel-title">
+              ${Components.icon("pill")}
+              <h2>Offene Einnahmen</h2>
+            </div>
+            <button class="chip-button" data-route-inline="intakes">Alle anzeigen</button>
+          </div>
+
+          ${open.length ? open.slice(0,3).map(intake => {
+            const med = meds.find(item => item.id === intake.medicationId);
+            return `<div class="dashboard-row">
+              <div class="dashboard-row-time">${intake.scheduledTime}</div>
+              <div>
+                <h3>${UI.escape(med.name)} ${UI.escape(med.strength)}</h3>
+                <p>${intake.amount} ${UI.escape(med.unit)}</p>
+              </div>
+              ${Components.badge("Geplant","info")}
+            </div>`;
+          }).join("") : Components.emptyState("Alles erledigt","Für heute sind keine Einnahmen mehr offen.")}
+
           <div class="progress-wrap">
-            <div class="progress-head"><strong>${done} von ${intakes.length} erledigt</strong><span>${percent} %</span></div>
+            <div class="progress-head">
+              <span>${done} von ${intakes.length} Einnahmen erledigt</span>
+              <strong>${percent} %</strong>
+            </div>
             <div class="progress-track"><div class="progress-bar" style="width:${percent}%"></div></div>
           </div>
-          <button class="secondary-button" data-action="reset-day">Testdaten für heute zurücksetzen</button>
-        </div>
-        <div class="hero-side">
-          <div class="next-card">
-            <span>Nächste Einnahme</span>
-            <strong class="time">${next ? next.scheduledTime : "✓"}</strong>
-            <div class="next-med">
-              ${nextMed ? UI.pill(nextMed) : "✅"}
-              <div>
-                <strong>${nextMed ? `${UI.escape(nextMed.name)} ${UI.escape(nextMed.strength)}` : "Für heute erledigt"}</strong>
-                <small>${nextMed ? `${next.amount} ${UI.escape(nextMed.unit)}` : "Keine Einnahme mehr offen"}</small>
-              </div>
+        </article>
+
+        <article class="dashboard-panel">
+          <div class="dashboard-panel-head">
+            <div class="dashboard-panel-title">
+              ${Components.icon("calendar")}
+              <h2>Heute – Termine</h2>
             </div>
+            <button class="chip-button" data-route-inline="calendar">Alle anzeigen</button>
           </div>
-          <div class="stats-grid">
-            <div class="stat-card"><b>💊</b><strong>${open.length}</strong><small>Offen</small></div>
-            <div class="stat-card"><b>📅</b><strong>${DataStore.get("events").filter(e=>e.date===DataStore.today()).length}</strong><small>Termin heute</small></div>
-            <div class="stat-card"><b>📦</b><strong>${warnings ? "Prüfen" : "OK"}</strong><small>Bestand</small></div>
-            <div class="stat-card"><b>⚠️</b><strong>${warnings}</strong><small>Hinweise</small></div>
+
+          ${todayEvents.length ? todayEvents.slice(0,3).map(event => `
+            <div class="dashboard-row">
+              <div class="dashboard-row-time">${event.time}</div>
+              <div>
+                <h3>${UI.escape(event.title)}</h3>
+                <p>${UI.escape(event.location || "")}</p>
+              </div>
+              <span>›</span>
+            </div>`).join("") : Components.emptyState("Keine Termine","Für heute sind keine Termine eingetragen.")}
+        </article>
+
+        <article class="dashboard-panel">
+          <div class="dashboard-panel-head">
+            <div class="dashboard-panel-title">
+              ${Components.icon("box")}
+              <h2>Bestand – Niedrig</h2>
+            </div>
+            <button class="chip-button" data-route-inline="cabinet">Alle anzeigen</button>
           </div>
-        </div>
-      </section>
 
-      <section class="section">
-        <div class="section-head">
-          <div><p class="eyebrow">Jetzt wichtig</p><h2>Offene Einnahmen</h2></div>
-          <button class="chip-button" data-route-inline="intakes">Protokoll</button>
-        </div>
-        <div class="cards">
-          ${open.map(i => IntakesModule.cardHtml(i, meds.find(m=>m.id===i.medicationId))).join("")}
-        </div>
-        ${open.length ? "" : `<div class="empty-state"><h3>✅ Alles erledigt</h3><p>Alle heutigen Einnahmen wurden bestätigt.</p></div>`}
-      </section>
-
-      <section class="section emergency-grid">
-        <button class="menu-item" data-route-inline="calendar"><span>📅 Nächster Termin</span><span>›</span></button>
-        <button class="menu-item" data-route-inline="emergency"><span>🆘 Notfall</span><span>›</span></button>
+          ${lowStock.length ? lowStock.slice(0,4).map(med => `
+            <div class="dashboard-row">
+              <div class="list-visual">${UI.pill(med)}</div>
+              <div>
+                <h3>${UI.escape(med.name)} ${UI.escape(med.strength)}</h3>
+                <p>${UI.escape(med.form || med.unit)}</p>
+              </div>
+              <div class="stock-number ${med.stock <= med.minStock ? "danger" : "warning"}">${med.stock}</div>
+            </div>`).join("") : Components.emptyState("Bestand ausreichend","Aktuell ist keine Nachbestellung notwendig.")}
+        </article>
       </section>`;
 
     this.bind();
   },
+
   bind() {
-    document.querySelectorAll("[data-intake-id]").forEach(btn => {
-      btn.addEventListener("click", () => IntakesModule.confirm(btn.dataset.intakeId));
+    document.querySelectorAll("[data-intake-id]").forEach(button => {
+      button.addEventListener("click", () => IntakesModule.confirm(button.dataset.intakeId));
     });
-    document.querySelectorAll("[data-route-inline]").forEach(btn => {
-      btn.addEventListener("click", () => Router.go(btn.dataset.routeInline));
-    });
-    const reset = document.querySelector("[data-action='reset-day']");
-    if (reset) reset.addEventListener("click", () => {
-      if (confirm("Heutige Einnahmen zurücksetzen?")) {
-        DataStore.resetToday(); Router.refresh(); UI.toast("Heutige Testdaten wurden zurückgesetzt.");
-      }
+
+    document.querySelectorAll("[data-route-inline]").forEach(button => {
+      button.addEventListener("click", () => Router.go(button.dataset.routeInline));
     });
   }
 };

@@ -1,0 +1,214 @@
+
+/* MediPlan v0.5.2 – Dashboard */
+.dashboard-overview {
+  display: grid;
+  grid-template-columns: minmax(340px, 1.35fr) repeat(4, minmax(135px, .5fr));
+  gap: 16px;
+}
+
+.dashboard-next {
+  padding: 24px;
+  border-radius: var(--mds-radius-lg);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 18px;
+}
+
+.dashboard-next-copy {
+  min-width: 0;
+}
+
+.dashboard-next-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--mds-color-primary);
+  font-weight: 900;
+}
+
+.dashboard-next-time {
+  display: block;
+  margin: 8px 0 4px;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1;
+  letter-spacing: -.06em;
+  font-weight: 950;
+}
+
+.dashboard-next-med {
+  margin: 0 0 5px;
+  font-size: 1.3rem;
+}
+
+.dashboard-next-dose {
+  margin: 0 0 16px;
+  color: var(--mds-color-gray-500);
+}
+
+.dashboard-next-visual {
+  min-width: 105px;
+  display: grid;
+  place-items: center;
+}
+
+.dashboard-next .primary-button {
+  width: 100%;
+}
+
+.dashboard-stat {
+  min-height: 220px;
+  padding: 20px;
+  border-radius: var(--mds-radius-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dashboard-stat .mds-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.dashboard-stat strong {
+  font-size: 2.4rem;
+}
+
+.dashboard-stat p {
+  margin: 0;
+  color: var(--mds-color-gray-500);
+}
+
+.dashboard-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 1.08fr .9fr .95fr;
+  gap: 16px;
+}
+
+.dashboard-panel {
+  padding: 20px;
+  border-radius: var(--mds-radius-lg);
+}
+
+.dashboard-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.dashboard-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dashboard-panel-title h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.dashboard-row {
+  display: grid;
+  grid-template-columns: 74px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(148,163,184,.18);
+}
+
+.dashboard-row:last-child {
+  border-bottom: 0;
+}
+
+.dashboard-row-time {
+  color: var(--mds-color-primary);
+  font-size: 1.12rem;
+  font-weight: 950;
+}
+
+.dashboard-row h3,
+.dashboard-row p {
+  margin: 0;
+}
+
+.dashboard-row p {
+  margin-top: 3px;
+  color: var(--mds-color-gray-500);
+}
+
+.stock-number {
+  min-width: 42px;
+  text-align: center;
+  border-radius: 12px;
+  padding: 5px 8px;
+  font-weight: 950;
+}
+
+.stock-number.danger {
+  color: #fecaca;
+  background: rgba(239,68,68,.15);
+}
+
+.stock-number.warning {
+  color: #fde68a;
+  background: rgba(245,158,11,.15);
+}
+
+body.dark .dashboard-next,
+body.dark .dashboard-stat,
+body.dark .dashboard-panel {
+  background: rgba(10, 24, 39, .88);
+  border: 1px solid rgba(148,163,184,.18);
+  box-shadow: 0 18px 48px rgba(0,0,0,.28);
+}
+
+body:not(.dark) .dashboard-next,
+body:not(.dark) .dashboard-stat,
+body:not(.dark) .dashboard-panel {
+  background: rgba(255,255,255,.88);
+  border: 1px solid rgba(226,232,240,.95);
+  box-shadow: var(--mds-shadow-md);
+}
+
+@media (max-width: 1080px) {
+  .dashboard-overview {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+
+  .dashboard-next {
+    grid-column: 1 / -1;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .dashboard-overview {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dashboard-next {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-next-visual {
+    display: none;
+  }
+
+  .dashboard-stat {
+    min-height: 145px;
+  }
+
+  .dashboard-row {
+    grid-template-columns: 62px 1fr;
+  }
+
+  .dashboard-row > :last-child {
+    grid-column: 2;
+  }
+}

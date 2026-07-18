@@ -1,18 +1,16 @@
 # Changelog
 
+## v0.5.2
+
+- Dark-Mode-Kontrast der unteren Navigation korrigiert
+- schwarze Navigationsschrift durch gut lesbare helle Schrift ersetzt
+- Emoji-Navigation durch einheitliche SVG-Icons ersetzt
+- aktiver Navigationspunkt mit Türkis/Grün-Verlauf hervorgehoben
+- neues Dashboard-Layout nach Corporate-Design-Mockup umgesetzt
+- kompakte Übersichts-, Termin-, Einnahme- und Bestandskarten ergänzt
+- Responsive Layout für Desktop, Tablet und Smartphone erweitert
+- Service Worker aktualisiert
+
 ## v0.5.1
 
 - MediPlan Design System finalisiert
-- Design Tokens ausgelagert
-- einheitliche Komponentenklassen ergänzt
-- standardisiertes SVG-Iconset ergänzt
-- reduzierte Animationen und Accessibility-Layer ergänzt
-- Coding Standard dokumentiert
-- Ordner `tests`, `releases` und `design` ergänzt
-- manuelle Testcheckliste ergänzt
-- Service Worker um neue Designsystem-Dateien erweitert
-
-## v0.5.0
-
-- Corporate Design integriert
-- Logo, App-Icons und Windows-ICO ergänzt

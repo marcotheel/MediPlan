@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "mediplan-v0-5-1";
+const CACHE_NAME = "mediplan-v0-5-2";
 const ASSETS = [
   "./","./index.html","./manifest.json",
   "./css/design-system/tokens.css",
@@ -7,7 +7,9 @@ const ASSETS = [
   "./css/design-system/icons.css",
   "./css/design-system/motion.css",
   "./css/design-system/accessibility.css",
-  "./css/base.css","./css/light.css","./css/dark.css","./css/responsive.css",
+  "./css/base.css",
+  "./css/dashboard.css",
+  "./css/navigation.css","./css/light.css","./css/dark.css","./css/responsive.css",
   "./js/core/storage.js","./js/core/data.js","./js/core/ui.js","./js/core/router.js",
   "./js/modules/dashboard.js","./js/modules/intakes.js","./js/modules/cabinet.js",
   "./js/modules/calendar.js","./js/modules/more.js","./js/modules/emergency.js",
