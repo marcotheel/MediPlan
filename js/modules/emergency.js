@@ -1,42 +1,48 @@
 
 const EmergencyModule = {
+  phoneHref(phone) {
+    return String(phone || "").replace(/[^+0-9]/g, "");
+  },
+
   contactHtml(contact, number) {
-    const fullName = [contact.firstName, contact.lastName].filter(Boolean).join(" ");
     const phone = String(contact.phone || "").trim();
 
     return `<article class="emergency-card emergency-contact-card">
-      <h3>☎️ Kontakt ${number}</h3>
+      <h3>☎️ Notfallkontakt ${number}</h3>
       <dl class="contact-details">
         <div><dt>Vorname</dt><dd>${UI.escape(contact.firstName || "Nicht hinterlegt")}</dd></div>
         <div><dt>Nachname</dt><dd>${UI.escape(contact.lastName || "Nicht hinterlegt")}</dd></div>
+        <div><dt>Beziehung</dt><dd>${UI.escape(contact.relationship || "Nicht hinterlegt")}</dd></div>
         <div><dt>Telefon</dt><dd>
           ${phone
-            ? `<a class="phone-link" href="tel:${UI.escape(phone.replace(/[^+0-9]/g,""))}">${UI.escape(phone)}</a>`
+            ? `<a class="phone-link" href="tel:${UI.escape(this.phoneHref(phone))}">${UI.escape(phone)}</a>`
             : "Nicht hinterlegt"}
         </dd></div>
       </dl>
       ${phone
-        ? `<a class="primary-button emergency-call-button" href="tel:${UI.escape(phone.replace(/[^+0-9]/g,""))}">Jetzt anrufen</a>`
+        ? `<a class="primary-button emergency-call-button" href="tel:${UI.escape(this.phoneHref(phone))}">Kontakt anrufen</a>`
         : ""}
     </article>`;
   },
 
-  doctorHtml(doctor, number) {
+  doctorHtml(doctor) {
     const phone = String(doctor.phone || "").trim();
 
     return `<article class="emergency-card emergency-contact-card">
-      <h3>👨‍⚕️ Hausarzt ${number}</h3>
+      <h3>👨‍⚕️ Hausarzt</h3>
       <dl class="contact-details">
         <div><dt>Vorname</dt><dd>${UI.escape(doctor.firstName || "Nicht hinterlegt")}</dd></div>
         <div><dt>Nachname</dt><dd>${UI.escape(doctor.lastName || "Nicht hinterlegt")}</dd></div>
+        <div><dt>Praxis</dt><dd>${UI.escape(doctor.practice || "Nicht hinterlegt")}</dd></div>
+        <div><dt>Adresse</dt><dd>${UI.escape(doctor.address || "Nicht hinterlegt")}</dd></div>
         <div><dt>Telefon</dt><dd>
           ${phone
-            ? `<a class="phone-link" href="tel:${UI.escape(phone.replace(/[^+0-9]/g,""))}">${UI.escape(phone)}</a>`
+            ? `<a class="phone-link" href="tel:${UI.escape(this.phoneHref(phone))}">${UI.escape(phone)}</a>`
             : "Nicht hinterlegt"}
         </dd></div>
       </dl>
       ${phone
-        ? `<a class="primary-button emergency-call-button" href="tel:${UI.escape(phone.replace(/[^+0-9]/g,""))}">Praxis anrufen</a>`
+        ? `<a class="primary-button emergency-call-button" href="tel:${UI.escape(this.phoneHref(phone))}">Praxis anrufen</a>`
         : ""}
     </article>`;
   },
@@ -47,16 +53,26 @@ const EmergencyModule = {
     const contacts = Array.isArray(person.emergencyContacts)
       ? person.emergencyContacts.slice(0,2)
       : [];
-    const doctors = Array.isArray(person.doctors)
-      ? person.doctors.slice(0,2)
-      : [];
 
     while (contacts.length < 2) {
-      contacts.push({firstName:"", lastName:"", phone:""});
+      contacts.push({
+        firstName:"",
+        lastName:"",
+        phone:"",
+        relationship:""
+      });
     }
-    while (doctors.length < 2) {
-      doctors.push({firstName:"", lastName:"", phone:""});
-    }
+
+    const doctor = person.doctor || {
+      firstName:"",
+      lastName:"",
+      phone:"",
+      practice:"",
+      address:""
+    };
+
+    const contact1Phone = String(contacts[0].phone || "").trim();
+    const doctorPhone = String(doctor.phone || "").trim();
 
     document.getElementById("view-emergency").innerHTML = `
       <div class="page-card">
@@ -70,17 +86,42 @@ const EmergencyModule = {
           Notfall den örtlichen Notruf wählen.
         </div>
 
+        <section class="emergency-quick-actions">
+          <a class="emergency-quick-button emergency-quick-button--red" href="tel:112">
+            <strong>112</strong>
+            <span>Notruf</span>
+          </a>
+
+          ${doctorPhone
+            ? `<a class="emergency-quick-button emergency-quick-button--blue"
+                 href="tel:${UI.escape(this.phoneHref(doctorPhone))}">
+                 <strong>Hausarzt</strong><span>Praxis anrufen</span>
+               </a>`
+            : `<div class="emergency-quick-button emergency-quick-button--disabled">
+                 <strong>Hausarzt</strong><span>Keine Nummer hinterlegt</span>
+               </div>`}
+
+          ${contact1Phone
+            ? `<a class="emergency-quick-button emergency-quick-button--orange"
+                 href="tel:${UI.escape(this.phoneHref(contact1Phone))}">
+                 <strong>Kontakt 1</strong><span>Direkt anrufen</span>
+               </a>`
+            : `<div class="emergency-quick-button emergency-quick-button--disabled">
+                 <strong>Kontakt 1</strong><span>Keine Nummer hinterlegt</span>
+               </div>`}
+        </section>
+
         <section class="section">
-          <p class="eyebrow">Kontakte</p>
+          <p class="eyebrow">Notfallkontakte</p>
           <div class="emergency-grid">
             ${contacts.map((contact,index) => this.contactHtml(contact,index+1)).join("")}
           </div>
         </section>
 
         <section class="section">
-          <p class="eyebrow">Hausärzte</p>
-          <div class="emergency-grid">
-            ${doctors.map((doctor,index) => this.doctorHtml(doctor,index+1)).join("")}
+          <p class="eyebrow">Hausarzt</p>
+          <div class="emergency-grid emergency-grid--single">
+            ${this.doctorHtml(doctor)}
           </div>
         </section>
 

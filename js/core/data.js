@@ -8,13 +8,17 @@ const DataStore = {
       allergies: "Keine hinterlegt",
       insurance: "Noch nicht hinterlegt",
       emergencyContacts: [
-        { id: "contact_1", firstName: "", lastName: "", phone: "" },
-        { id: "contact_2", firstName: "", lastName: "", phone: "" }
+        { id: "contact_1", firstName: "", lastName: "", phone: "", relationship: "" },
+        { id: "contact_2", firstName: "", lastName: "", phone: "", relationship: "" }
       ],
-      doctors: [
-        { id: "doctor_1", firstName: "Thomas", lastName: "Müller", phone: "" },
-        { id: "doctor_2", firstName: "", lastName: "", phone: "" }
-      ]
+      doctor: {
+        id: "doctor_1",
+        firstName: "Thomas",
+        lastName: "Müller",
+        phone: "",
+        practice: "",
+        address: ""
+      }
     },
     medications: [
       { id:"med_ram", name:"Ramipril", strength:"5 mg", form:"Tablette", description:"Weiße Tablette", dosage:"1-0-0", time:"08:00", amount:1, unit:"Tablette", stock:84, minStock:10, expiry:"2027-04-30", active:true, pill:"white", image:"" },
@@ -48,24 +52,43 @@ const DataStore = {
 
     if (!Array.isArray(person.emergencyContacts)) {
       person.emergencyContacts = [
-        { id:"contact_1", firstName:"", lastName:"", phone:"" },
-        { id:"contact_2", firstName:"", lastName:"", phone:"" }
+        { id:"contact_1", firstName:"", lastName:"", phone:"", relationship:"" },
+        { id:"contact_2", firstName:"", lastName:"", phone:"", relationship:"" }
       ];
       changed = true;
+    } else {
+      person.emergencyContacts = person.emergencyContacts.slice(0,2).map((contact,index) => ({
+        id: contact.id || `contact_${index+1}`,
+        firstName: contact.firstName || "",
+        lastName: contact.lastName || "",
+        phone: contact.phone || "",
+        relationship: contact.relationship || ""
+      }));
+      while (person.emergencyContacts.length < 2) {
+        person.emergencyContacts.push({
+          id:`contact_${person.emergencyContacts.length+1}`,
+          firstName:"",
+          lastName:"",
+          phone:"",
+          relationship:""
+        });
+      }
     }
 
-    if (!Array.isArray(person.doctors)) {
-      const oldDoctor = String(person.doctor || "").trim();
-      const parts = oldDoctor.replace(/^Dr\.\s*/i, "").split(/\s+/);
-      person.doctors = [
-        {
-          id:"doctor_1",
-          firstName:parts.length > 1 ? parts.slice(0,-1).join(" ") : "",
-          lastName:parts.length ? parts[parts.length-1] : "",
-          phone:""
-        },
-        { id:"doctor_2", firstName:"", lastName:"", phone:"" }
-      ];
+    if (!person.doctor || Array.isArray(person.doctors)) {
+      const oldDoctor = Array.isArray(person.doctors) && person.doctors.length
+        ? person.doctors[0]
+        : { firstName:"", lastName:"", phone:"" };
+
+      person.doctor = {
+        id: oldDoctor.id || "doctor_1",
+        firstName: oldDoctor.firstName || "",
+        lastName: oldDoctor.lastName || "",
+        phone: oldDoctor.phone || "",
+        practice: oldDoctor.practice || "",
+        address: oldDoctor.address || ""
+      };
+      delete person.doctors;
       changed = true;
     }
 
@@ -107,24 +130,43 @@ const DataStore = {
 
     if (!Array.isArray(person.emergencyContacts)) {
       person.emergencyContacts = [
-        { id:"contact_1", firstName:"", lastName:"", phone:"" },
-        { id:"contact_2", firstName:"", lastName:"", phone:"" }
+        { id:"contact_1", firstName:"", lastName:"", phone:"", relationship:"" },
+        { id:"contact_2", firstName:"", lastName:"", phone:"", relationship:"" }
       ];
       changed = true;
+    } else {
+      person.emergencyContacts = person.emergencyContacts.slice(0,2).map((contact,index) => ({
+        id: contact.id || `contact_${index+1}`,
+        firstName: contact.firstName || "",
+        lastName: contact.lastName || "",
+        phone: contact.phone || "",
+        relationship: contact.relationship || ""
+      }));
+      while (person.emergencyContacts.length < 2) {
+        person.emergencyContacts.push({
+          id:`contact_${person.emergencyContacts.length+1}`,
+          firstName:"",
+          lastName:"",
+          phone:"",
+          relationship:""
+        });
+      }
     }
 
-    if (!Array.isArray(person.doctors)) {
-      const oldDoctor = String(person.doctor || "").trim();
-      const parts = oldDoctor.replace(/^Dr\.\s*/i, "").split(/\s+/);
-      person.doctors = [
-        {
-          id:"doctor_1",
-          firstName:parts.length > 1 ? parts.slice(0,-1).join(" ") : "",
-          lastName:parts.length ? parts[parts.length-1] : "",
-          phone:""
-        },
-        { id:"doctor_2", firstName:"", lastName:"", phone:"" }
-      ];
+    if (!person.doctor || Array.isArray(person.doctors)) {
+      const oldDoctor = Array.isArray(person.doctors) && person.doctors.length
+        ? person.doctors[0]
+        : { firstName:"", lastName:"", phone:"" };
+
+      person.doctor = {
+        id: oldDoctor.id || "doctor_1",
+        firstName: oldDoctor.firstName || "",
+        lastName: oldDoctor.lastName || "",
+        phone: oldDoctor.phone || "",
+        practice: oldDoctor.practice || "",
+        address: oldDoctor.address || ""
+      };
+      delete person.doctors;
       changed = true;
     }
 

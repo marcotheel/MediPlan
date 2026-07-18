@@ -546,3 +546,65 @@ body.dark .admin-form-section {
     gap: 3px;
   }
 }
+
+
+/* v0.5.4 – emergency quick actions */
+.emergency-quick-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.emergency-quick-button {
+  min-height: 108px;
+  border-radius: var(--mds-radius-lg);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+  box-shadow: var(--mds-shadow-md);
+}
+
+.emergency-quick-button strong {
+  font-size: 1.35rem;
+}
+
+.emergency-quick-button span {
+  font-size: .9rem;
+  opacity: .92;
+}
+
+.emergency-quick-button--red {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+}
+
+.emergency-quick-button--blue {
+  background: linear-gradient(135deg, #0369a1, #0ea5e9);
+}
+
+.emergency-quick-button--orange {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+}
+
+.emergency-quick-button--disabled {
+  background: rgba(148,163,184,.22);
+  color: inherit;
+  box-shadow: none;
+  border: 1px solid rgba(148,163,184,.25);
+}
+
+.emergency-grid--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (max-width: 720px) {
+  .emergency-quick-actions {
+    grid-template-columns: 1fr;
+  }
+}

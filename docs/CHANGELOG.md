@@ -1,16 +1,17 @@
 # Changelog
 
-## v0.5.3
+## v0.5.4
 
-- Notfallbereich um zwei Notfallkontakte erweitert
-- beide Kontakte besitzen Vorname, Nachname und Telefonnummer
-- Notfallbereich um zwei Hausarzt-Einträge erweitert
-- beide Hausärzte besitzen Vorname, Nachname und Telefonnummer
-- Telefonnummern sind auf unterstützten Geräten direkt anwählbar
-- Kontakte und Hausärzte im Admin-Bereich bearbeitbar
-- bestehende Daten werden beim Start automatisch migriert
+- zweiten Hausarzt entfernt
+- ein Hausarzt mit Vorname, Nachname, Telefonnummer, Praxisname und Adresse
+- zwei Notfallkontakte bleiben erhalten
+- Beziehung zu jedem Notfallkontakt ergänzt
+- Schnellwahltasten für 112, Hausarzt und Kontakt 1 ergänzt
+- Telefonlinks direkt anwählbar
+- Admin-Bereich angepasst
+- automatische Datenmigration ergänzt
 - Service Worker aktualisiert
 
-## v0.5.2
+## v0.5.3
 
-- neues Dashboard und Dark-Mode-Navigation
+- zwei Notfallkontakte und zwei Hausärzte ergänzt

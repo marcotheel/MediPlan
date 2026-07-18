@@ -148,16 +148,25 @@ const AdminModule = {
     const contacts = Array.isArray(person.emergencyContacts)
       ? person.emergencyContacts.slice(0,2)
       : [];
-    const doctors = Array.isArray(person.doctors)
-      ? person.doctors.slice(0,2)
-      : [];
 
     while (contacts.length < 2) {
-      contacts.push({id:`contact_${contacts.length+1}`,firstName:"",lastName:"",phone:""});
+      contacts.push({
+        id:`contact_${contacts.length+1}`,
+        firstName:"",
+        lastName:"",
+        phone:"",
+        relationship:""
+      });
     }
-    while (doctors.length < 2) {
-      doctors.push({id:`doctor_${doctors.length+1}`,firstName:"",lastName:"",phone:""});
-    }
+
+    const doctor = person.doctor || {
+      id:"doctor_1",
+      firstName:"",
+      lastName:"",
+      phone:"",
+      practice:"",
+      address:""
+    };
 
     document.getElementById("adminContent").innerHTML = `
       <form id="personForm" class="form-grid">
@@ -172,7 +181,10 @@ const AdminModule = {
             <div class="form-field"><label>Vorname</label><input name="contact1FirstName" value="${UI.escape(contacts[0].firstName)}"></div>
             <div class="form-field"><label>Nachname</label><input name="contact1LastName" value="${UI.escape(contacts[0].lastName)}"></div>
           </div>
-          <div class="form-field"><label>Telefonnummer</label><input type="tel" name="contact1Phone" value="${UI.escape(contacts[0].phone)}"></div>
+          <div class="form-grid two">
+            <div class="form-field"><label>Telefonnummer</label><input type="tel" name="contact1Phone" value="${UI.escape(contacts[0].phone)}"></div>
+            <div class="form-field"><label>Beziehung</label><input name="contact1Relationship" placeholder="z. B. Sohn, Tochter, Nachbar" value="${UI.escape(contacts[0].relationship)}"></div>
+          </div>
         </section>
 
         <section class="admin-form-section">
@@ -181,25 +193,23 @@ const AdminModule = {
             <div class="form-field"><label>Vorname</label><input name="contact2FirstName" value="${UI.escape(contacts[1].firstName)}"></div>
             <div class="form-field"><label>Nachname</label><input name="contact2LastName" value="${UI.escape(contacts[1].lastName)}"></div>
           </div>
-          <div class="form-field"><label>Telefonnummer</label><input type="tel" name="contact2Phone" value="${UI.escape(contacts[1].phone)}"></div>
+          <div class="form-grid two">
+            <div class="form-field"><label>Telefonnummer</label><input type="tel" name="contact2Phone" value="${UI.escape(contacts[1].phone)}"></div>
+            <div class="form-field"><label>Beziehung</label><input name="contact2Relationship" placeholder="z. B. Sohn, Tochter, Nachbar" value="${UI.escape(contacts[1].relationship)}"></div>
+          </div>
         </section>
 
         <section class="admin-form-section">
-          <h3>Hausarzt 1</h3>
+          <h3>Hausarzt</h3>
           <div class="form-grid two">
-            <div class="form-field"><label>Vorname</label><input name="doctor1FirstName" value="${UI.escape(doctors[0].firstName)}"></div>
-            <div class="form-field"><label>Nachname</label><input name="doctor1LastName" value="${UI.escape(doctors[0].lastName)}"></div>
+            <div class="form-field"><label>Vorname</label><input name="doctorFirstName" value="${UI.escape(doctor.firstName)}"></div>
+            <div class="form-field"><label>Nachname</label><input name="doctorLastName" value="${UI.escape(doctor.lastName)}"></div>
           </div>
-          <div class="form-field"><label>Telefonnummer</label><input type="tel" name="doctor1Phone" value="${UI.escape(doctors[0].phone)}"></div>
-        </section>
-
-        <section class="admin-form-section">
-          <h3>Hausarzt 2</h3>
           <div class="form-grid two">
-            <div class="form-field"><label>Vorname</label><input name="doctor2FirstName" value="${UI.escape(doctors[1].firstName)}"></div>
-            <div class="form-field"><label>Nachname</label><input name="doctor2LastName" value="${UI.escape(doctors[1].lastName)}"></div>
+            <div class="form-field"><label>Telefonnummer</label><input type="tel" name="doctorPhone" value="${UI.escape(doctor.phone)}"></div>
+            <div class="form-field"><label>Praxisname</label><input name="doctorPractice" value="${UI.escape(doctor.practice)}"></div>
           </div>
-          <div class="form-field"><label>Telefonnummer</label><input type="tel" name="doctor2Phone" value="${UI.escape(doctors[1].phone)}"></div>
+          <div class="form-field"><label>Adresse</label><input name="doctorAddress" value="${UI.escape(doctor.address)}"></div>
         </section>
 
         <div class="form-field">
@@ -231,33 +241,29 @@ const AdminModule = {
             id: contacts[0].id || "contact_1",
             firstName: form.get("contact1FirstName"),
             lastName: form.get("contact1LastName"),
-            phone: form.get("contact1Phone")
+            phone: form.get("contact1Phone"),
+            relationship: form.get("contact1Relationship")
           },
           {
             id: contacts[1].id || "contact_2",
             firstName: form.get("contact2FirstName"),
             lastName: form.get("contact2LastName"),
-            phone: form.get("contact2Phone")
+            phone: form.get("contact2Phone"),
+            relationship: form.get("contact2Relationship")
           }
         ],
-        doctors: [
-          {
-            id: doctors[0].id || "doctor_1",
-            firstName: form.get("doctor1FirstName"),
-            lastName: form.get("doctor1LastName"),
-            phone: form.get("doctor1Phone")
-          },
-          {
-            id: doctors[1].id || "doctor_2",
-            firstName: form.get("doctor2FirstName"),
-            lastName: form.get("doctor2LastName"),
-            phone: form.get("doctor2Phone")
-          }
-        ]
+        doctor: {
+          id: doctor.id || "doctor_1",
+          firstName: form.get("doctorFirstName"),
+          lastName: form.get("doctorLastName"),
+          phone: form.get("doctorPhone"),
+          practice: form.get("doctorPractice"),
+          address: form.get("doctorAddress")
+        }
       };
 
       DataStore.set("person", updatedPerson);
-      UI.toast("Kontakte und Hausärzte wurden gespeichert.");
+      UI.toast("Notfallkontakte und Hausarzt wurden gespeichert.");
     });
   }
 };

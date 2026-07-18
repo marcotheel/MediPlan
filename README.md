@@ -1,13 +1,13 @@
-# MediPlan v0.5.3 – Notfallkontakte
+# MediPlan v0.5.4 – Notfallbereich
 
 ## Neu
 
-- zwei Notfallkontakte
-- zwei Hausarzt-Einträge
-- Vorname, Nachname und Telefonnummer
+- zwei Notfallkontakte mit Beziehung
+- ein Hausarzt
+- Praxisname und Adresse
+- Schnellwahl für 112, Hausarzt und Kontakt 1
 - direkte Telefonlinks
-- Bearbeitung im Admin-Bereich
-- automatische Migration vorhandener Daten
+- Admin-Bereich angepasst
 
 ## Admin-PIN
 
