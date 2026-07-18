@@ -26,8 +26,8 @@ const DataStore = {
       { id:"med_vit", name:"Vitamin D", strength:"1000 IE", form:"Kapsel", description:"Gelbe Kapsel", dosage:"0-0-1", time:"20:00", amount:1, unit:"Kapsel", stock:60, minStock:10, expiry:"2027-08-31", active:true, pill:"yellow", image:"" }
     ],
     events: [
-      { id:"evt_1", title:"Hausarzt", date:new Date().toISOString().slice(0,10), time:"15:30", location:"Dr. Thomas Müller", type:"doctor" },
-      { id:"evt_2", title:"Zahnarzt", date:new Date(Date.now()+86400000).toISOString().slice(0,10), time:"09:00", location:"Kontrolltermin", type:"doctor" }
+      { id:"evt_1", title:"Hausarzt", date:new Date().toISOString().slice(0,10), time:"15:30", location:"Dr. Thomas Müller", type:"doctor", followUp:false },
+      { id:"evt_2", title:"Zahnarzt", date:new Date(Date.now()+86400000).toISOString().slice(0,10), time:"09:00", location:"Kontrolltermin", type:"doctor", followUp:false }
     ],
     settings: {
       theme:"dark",
@@ -94,6 +94,7 @@ const DataStore = {
 
     if (changed) this.set("person", person);
 
+    this.cleanupPastEvents();
     this.ensureTodayIntakes();
   },
 
@@ -172,7 +173,30 @@ const DataStore = {
 
     if (changed) this.set("person", person);
 
+    this.cleanupPastEvents();
     this.ensureTodayIntakes();
+  },
+
+
+  cleanupPastEvents() {
+    const today = this.today();
+    const events = this.get("events");
+    const normalized = events.map(event => ({
+      ...event,
+      followUp: Boolean(event.followUp)
+    }));
+
+    const filtered = normalized.filter(event => {
+      if (!event.date) return true;
+      if (event.followUp) return true;
+      return event.date >= today;
+    });
+
+    if (JSON.stringify(filtered) !== JSON.stringify(events)) {
+      this.set("events", filtered);
+    }
+
+    return filtered;
   },
 
   resetDemo() {

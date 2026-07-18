@@ -1,19 +1,16 @@
 # Changelog
 
-## v0.5.5
+## v0.5.6
 
-- neuer Bereich „Dokumente & Arztberichte“
-- Kameraaufnahme über Smartphone und Tablet
-- Auswahl vorhandener Bilder
-- Dokumenttyp, Titel, Datum, Arzt/Praxis und Notiz
-- Speicherung großer Dokumentbilder in IndexedDB
-- Dokumentenübersicht mit Vorschaubildern
-- Vollbild-Vorschau
-- Dokumente lokal löschen
-- Speicherung ausschließlich lokal auf dem Gerät
-- Menüpunkt unter „Mehr“
+- Termine mit einem Datum vor heute werden automatisch gelöscht
+- Termine vom heutigen Tag bleiben unabhängig von der Uhrzeit erhalten
+- Folgetermine bleiben auch nach Ablauf des Datums gespeichert
+- Terminformular um Auswahl „Folgetermin“ erweitert
+- Folgetermine werden im Kalender gekennzeichnet
+- bestehende Termine werden automatisch um das neue Datenfeld ergänzt
+- Dashboard verwendet nur bereinigte Termindaten
 - Service Worker aktualisiert
 
-## v0.5.4
+## v0.5.5
 
-- Notfallbereich mit einem Hausarzt und zwei Notfallkontakten
+- Dokumente und Arztberichte ergänzt

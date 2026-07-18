@@ -744,3 +744,37 @@ body.dark .document-form-preview {
     display: grid;
   }
 }
+
+
+/* v0.5.6 – Folgetermine */
+.follow-up-field {
+  min-height: 64px;
+  padding: 14px 16px;
+  border-radius: var(--mds-radius-md);
+  border: 1px solid rgba(148,163,184,.28);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.follow-up-field input {
+  width: 22px;
+  height: 22px;
+  margin-top: 2px;
+  flex: 0 0 auto;
+}
+
+.follow-up-field span {
+  display: grid;
+  gap: 3px;
+}
+
+.follow-up-field small {
+  opacity: .7;
+  line-height: 1.4;
+}
+
+body.dark .follow-up-field {
+  background: rgba(10,24,39,.46);
+}

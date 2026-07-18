@@ -1,20 +1,12 @@
-# MediPlan v0.5.5 – Dokumente & Arztberichte
+# MediPlan v0.5.6 – Terminbereinigung
 
 ## Neu
 
-- Dokumente über Kamera fotografieren
-- vorhandene Bilder auswählen
-- Dokumenttypen verwalten
-- Titel, Datum, Arzt/Praxis und Notizen
-- lokale IndexedDB-Speicherung
-- Dokumentenvorschau
-- Dokument löschen
-- neuer Bereich unter „Mehr“
-
-## Datenschutz
-
-Dokumente bleiben lokal auf dem verwendeten Gerät und werden nicht automatisch
-auf GitHub oder einen externen Server hochgeladen.
+- vergangene Termine werden automatisch gelöscht
+- Folgetermine bleiben gespeichert
+- Termine von heute werden nicht vorzeitig entfernt
+- Kennzeichnung von Folgeterminen im Kalender
+- Auswahl „Folgetermin“ im Terminformular
 
 ## Admin-PIN
 

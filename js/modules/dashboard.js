@@ -3,7 +3,7 @@ const DashboardModule = {
   render() {
     const meds = DataStore.get("medications");
     const intakes = DataStore.getTodayIntakes();
-    const events = DataStore.get("events");
+    const events = DataStore.cleanupPastEvents();
 
     const open = intakes.filter(item => item.status === "open")
       .sort((a, b) => a.scheduledTime.localeCompare(b.scheduledTime));

@@ -1,7 +1,7 @@
 
 const CalendarModule = {
   render() {
-    const events = DataStore.get("events").slice().sort((a,b)=>`${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`));
+    const events = DataStore.cleanupPastEvents().slice().sort((a,b)=>`${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`));
     document.getElementById("view-calendar").innerHTML = `
       <div class="page-card">
         <div class="page-title">
@@ -13,6 +13,7 @@ const CalendarModule = {
             <time>${new Date(`${e.date}T00:00:00`).toLocaleDateString("de-DE")} · ${e.time}</time>
             <h3>${UI.escape(e.title)}</h3>
             <p>${UI.escape(e.location || "")}</p>
+            ${e.followUp ? `<span class="mds-badge mds-badge--success">Folgetermin</span>` : ""}
           </article>`).join("") : `<div class="empty-state"><h3>Keine Termine</h3></div>`}
         </div>
       </div>`;
@@ -28,6 +29,10 @@ const CalendarModule = {
           <div class="form-field"><label>Uhrzeit</label><input type="time" name="time" required></div>
         </div>
         <div class="form-field"><label>Ort / Hinweis</label><input name="location"></div>
+        <label class="follow-up-field">
+          <input type="checkbox" name="followUp">
+          <span><strong>Folgetermin</strong><small>Bleibt auch nach Ablauf des Datums gespeichert.</small></span>
+        </label>
         <div class="form-actions"><button type="button" class="secondary-button" data-close>Abbrechen</button><button class="primary-button">Speichern</button></div>
       </form>`);
     document.querySelector("[data-close]").addEventListener("click",UI.closeModal);
@@ -35,7 +40,15 @@ const CalendarModule = {
       e.preventDefault();
       const f = new FormData(e.currentTarget);
       const events = DataStore.get("events");
-      events.push({id:`evt_${Date.now()}`,title:f.get("title"),date:f.get("date"),time:f.get("time"),location:f.get("location"),type:"other"});
+      events.push({
+        id:`evt_${Date.now()}`,
+        title:f.get("title"),
+        date:f.get("date"),
+        time:f.get("time"),
+        location:f.get("location"),
+        type:"other",
+        followUp:f.get("followUp") === "on"
+      });
       DataStore.set("events",events);
       UI.closeModal(); this.render(); UI.toast("Termin gespeichert.");
     });
