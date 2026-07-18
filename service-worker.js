@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "mediplan-v0-5-7";
+const CACHE_NAME = "mediplan-v0-5-8";
 const ASSETS = [
   "./","./index.html","./manifest.json",
   "./css/design-system/tokens.css",

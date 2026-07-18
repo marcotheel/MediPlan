@@ -3,7 +3,14 @@ const DataStore = {
   defaults: {
     person: {
       id: "person_mama",
-      name: "Mama",
+      firstName: "Mama",
+      lastName: "",
+      displayName: "Mama",
+      birthDate: "",
+      gender: "",
+      bloodGroup: "",
+      heightCm: "",
+      weightKg: "",
       avatar: "",
       allergies: "Keine hinterlegt",
       insurance: "Noch nicht hinterlegt",
@@ -48,7 +55,29 @@ const DataStore = {
     });
 
     const person = this.get("person");
-    let changed = false;
+
+    if (!person.firstName && person.name) {
+      const parts = String(person.name).trim().split(/\s+/);
+      person.firstName = parts.shift() || "";
+      person.lastName = parts.join(" ");
+    }
+
+    person.firstName = person.firstName || "";
+    person.lastName = person.lastName || "";
+    person.displayName = person.displayName ||
+      [person.firstName, person.lastName].filter(Boolean).join(" ") ||
+      person.name ||
+      "Person";
+    person.birthDate = person.birthDate || "";
+    person.gender = person.gender || "";
+    person.bloodGroup = person.bloodGroup || "";
+    person.heightCm = person.heightCm || "";
+    person.weightKg = person.weightKg || "";
+    person.allergies = person.allergies || "Keine hinterlegt";
+    person.insurance = person.insurance || "Noch nicht hinterlegt";
+    delete person.name;
+
+    let changed = true;
 
     if (!Array.isArray(person.emergencyContacts)) {
       person.emergencyContacts = [
@@ -92,7 +121,7 @@ const DataStore = {
       changed = true;
     }
 
-    if (changed) this.set("person", person);
+    this.set("person", person);
 
     this.cleanupPastEvents();
     this.ensureTodayIntakes();

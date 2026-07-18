@@ -146,34 +146,84 @@ const AdminModule = {
   renderPerson() {
     const person = DataStore.get("person");
     const contacts = Array.isArray(person.emergencyContacts)
-      ? person.emergencyContacts.slice(0,2)
+      ? person.emergencyContacts.slice(0, 2)
       : [];
 
     while (contacts.length < 2) {
       contacts.push({
-        id:`contact_${contacts.length+1}`,
-        firstName:"",
-        lastName:"",
-        phone:"",
-        relationship:""
+        id: `contact_${contacts.length + 1}`,
+        firstName: "",
+        lastName: "",
+        phone: "",
+        relationship: ""
       });
     }
 
     const doctor = person.doctor || {
-      id:"doctor_1",
-      firstName:"",
-      lastName:"",
-      phone:"",
-      practice:"",
-      address:""
+      id: "doctor_1",
+      firstName: "",
+      lastName: "",
+      phone: "",
+      practice: "",
+      address: ""
     };
 
     document.getElementById("adminContent").innerHTML = `
       <form id="personForm" class="form-grid">
-        <div class="form-field">
-          <label>Name der betreuten Person</label>
-          <input name="name" value="${UI.escape(person.name)}">
-        </div>
+        <section class="admin-form-section">
+          <h3>Betreute Person</h3>
+
+          <div class="form-grid two">
+            <div class="form-field">
+              <label>Vorname</label>
+              <input name="firstName" required value="${UI.escape(person.firstName || "")}">
+            </div>
+
+            <div class="form-field">
+              <label>Nachname</label>
+              <input name="lastName" value="${UI.escape(person.lastName || "")}">
+            </div>
+          </div>
+
+          <div class="form-grid two">
+            <div class="form-field">
+              <label>Geburtsdatum</label>
+              <input type="date" name="birthDate" value="${UI.escape(person.birthDate || "")}">
+            </div>
+
+            <div class="form-field">
+              <label>Geschlecht</label>
+              <select name="gender">
+                <option value="">Keine Angabe</option>
+                <option value="female" ${person.gender === "female" ? "selected" : ""}>Weiblich</option>
+                <option value="male" ${person.gender === "male" ? "selected" : ""}>Männlich</option>
+                <option value="diverse" ${person.gender === "diverse" ? "selected" : ""}>Divers</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid two">
+            <div class="form-field">
+              <label>Blutgruppe</label>
+              <select name="bloodGroup">
+                <option value="">Nicht hinterlegt</option>
+                ${["0+","0-","A+","A-","B+","B-","AB+","AB-"].map(value =>
+                  `<option value="${value}" ${person.bloodGroup === value ? "selected" : ""}>${value}</option>`
+                ).join("")}
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label>Größe in cm</label>
+              <input type="number" min="0" max="250" name="heightCm" value="${UI.escape(person.heightCm || "")}">
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>Gewicht in kg</label>
+            <input type="number" min="0" max="500" step="0.1" name="weightKg" value="${UI.escape(person.weightKg || "")}">
+          </div>
+        </section>
 
         <section class="admin-form-section">
           <h3>Notfallkontakt 1</h3>
@@ -183,7 +233,7 @@ const AdminModule = {
           </div>
           <div class="form-grid two">
             <div class="form-field"><label>Telefonnummer</label><input type="tel" name="contact1Phone" value="${UI.escape(contacts[0].phone)}"></div>
-            <div class="form-field"><label>Beziehung</label><input name="contact1Relationship" placeholder="z. B. Sohn, Tochter, Nachbar" value="${UI.escape(contacts[0].relationship)}"></div>
+            <div class="form-field"><label>Beziehung</label><input name="contact1Relationship" value="${UI.escape(contacts[0].relationship)}"></div>
           </div>
         </section>
 
@@ -195,7 +245,7 @@ const AdminModule = {
           </div>
           <div class="form-grid two">
             <div class="form-field"><label>Telefonnummer</label><input type="tel" name="contact2Phone" value="${UI.escape(contacts[1].phone)}"></div>
-            <div class="form-field"><label>Beziehung</label><input name="contact2Relationship" placeholder="z. B. Sohn, Tochter, Nachbar" value="${UI.escape(contacts[1].relationship)}"></div>
+            <div class="form-field"><label>Beziehung</label><input name="contact2Relationship" value="${UI.escape(contacts[1].relationship)}"></div>
           </div>
         </section>
 
@@ -214,12 +264,12 @@ const AdminModule = {
 
         <div class="form-field">
           <label>Allergien</label>
-          <textarea name="allergies">${UI.escape(person.allergies)}</textarea>
+          <textarea name="allergies">${UI.escape(person.allergies || "")}</textarea>
         </div>
 
         <div class="form-field">
           <label>Krankenkasse</label>
-          <input name="insurance" value="${UI.escape(person.insurance)}">
+          <input name="insurance" value="${UI.escape(person.insurance || "")}">
         </div>
 
         <div class="form-actions">
@@ -229,41 +279,62 @@ const AdminModule = {
 
     document.getElementById("personForm").addEventListener("submit", event => {
       event.preventDefault();
+
       const form = new FormData(event.currentTarget);
+      const firstName = String(form.get("firstName") || "").trim();
+      const lastName = String(form.get("lastName") || "").trim();
+
+      if (!firstName) {
+        UI.toast("Bitte einen Vornamen eintragen.");
+        return;
+      }
 
       const updatedPerson = {
         ...person,
-        name: form.get("name"),
-        allergies: form.get("allergies"),
-        insurance: form.get("insurance"),
+        firstName,
+        lastName,
+        displayName: [firstName, lastName].filter(Boolean).join(" "),
+        birthDate: String(form.get("birthDate") || ""),
+        gender: String(form.get("gender") || ""),
+        bloodGroup: String(form.get("bloodGroup") || ""),
+        heightCm: String(form.get("heightCm") || ""),
+        weightKg: String(form.get("weightKg") || ""),
+        allergies: String(form.get("allergies") || "").trim(),
+        insurance: String(form.get("insurance") || "").trim(),
         emergencyContacts: [
           {
             id: contacts[0].id || "contact_1",
-            firstName: form.get("contact1FirstName"),
-            lastName: form.get("contact1LastName"),
-            phone: form.get("contact1Phone"),
-            relationship: form.get("contact1Relationship")
+            firstName: String(form.get("contact1FirstName") || "").trim(),
+            lastName: String(form.get("contact1LastName") || "").trim(),
+            phone: String(form.get("contact1Phone") || "").trim(),
+            relationship: String(form.get("contact1Relationship") || "").trim()
           },
           {
             id: contacts[1].id || "contact_2",
-            firstName: form.get("contact2FirstName"),
-            lastName: form.get("contact2LastName"),
-            phone: form.get("contact2Phone"),
-            relationship: form.get("contact2Relationship")
+            firstName: String(form.get("contact2FirstName") || "").trim(),
+            lastName: String(form.get("contact2LastName") || "").trim(),
+            phone: String(form.get("contact2Phone") || "").trim(),
+            relationship: String(form.get("contact2Relationship") || "").trim()
           }
         ],
         doctor: {
           id: doctor.id || "doctor_1",
-          firstName: form.get("doctorFirstName"),
-          lastName: form.get("doctorLastName"),
-          phone: form.get("doctorPhone"),
-          practice: form.get("doctorPractice"),
-          address: form.get("doctorAddress")
+          firstName: String(form.get("doctorFirstName") || "").trim(),
+          lastName: String(form.get("doctorLastName") || "").trim(),
+          phone: String(form.get("doctorPhone") || "").trim(),
+          practice: String(form.get("doctorPractice") || "").trim(),
+          address: String(form.get("doctorAddress") || "").trim()
         }
       };
 
       DataStore.set("person", updatedPerson);
-      UI.toast("Notfallkontakte und Hausarzt wurden gespeichert.");
+
+      const title = document.getElementById("pageTitle");
+      if (title) {
+        title.textContent = App.getGreeting(updatedPerson.firstName);
+      }
+
+      UI.toast("Personendaten wurden gespeichert.");
     });
   }
 };

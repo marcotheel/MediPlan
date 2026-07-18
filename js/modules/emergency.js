@@ -112,6 +112,23 @@ const EmergencyModule = {
         </section>
 
         <section class="section">
+          <p class="eyebrow">Betreute Person</p>
+          <div class="emergency-grid">
+            <article class="emergency-card">
+              <h3>👤 Persönliche Daten</h3>
+              <dl class="contact-details">
+                <div><dt>Vorname</dt><dd>${UI.escape(person.firstName || "Nicht hinterlegt")}</dd></div>
+                <div><dt>Nachname</dt><dd>${UI.escape(person.lastName || "Nicht hinterlegt")}</dd></div>
+                <div><dt>Geburtsdatum</dt><dd>${person.birthDate ? new Date(`${person.birthDate}T00:00:00`).toLocaleDateString("de-DE") : "Nicht hinterlegt"}</dd></div>
+                <div><dt>Blutgruppe</dt><dd>${UI.escape(person.bloodGroup || "Nicht hinterlegt")}</dd></div>
+                <div><dt>Größe</dt><dd>${person.heightCm ? `${UI.escape(person.heightCm)} cm` : "Nicht hinterlegt"}</dd></div>
+                <div><dt>Gewicht</dt><dd>${person.weightKg ? `${UI.escape(person.weightKg)} kg` : "Nicht hinterlegt"}</dd></div>
+              </dl>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
           <p class="eyebrow">Notfallkontakte</p>
           <div class="emergency-grid">
             ${contacts.map((contact,index) => this.contactHtml(contact,index+1)).join("")}

@@ -302,6 +302,8 @@ const DocumentsModule = {
         event.preventDefault();
 
         const form = new FormData(event.currentTarget);
+        const activePerson = DataStore.get("person");
+
         const documentItem = {
           id: `document_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
           title: String(form.get("title") || "").trim(),
@@ -310,7 +312,10 @@ const DocumentsModule = {
           doctor: String(form.get("doctor") || "").trim(),
           notes: String(form.get("notes") || "").trim(),
           imageData: draft.imageData,
-          createdAt: new Date().toISOString()
+          createdAt: new Date().toISOString(),
+          personId: activePerson.id,
+          personName: activePerson.displayName ||
+            [activePerson.firstName, activePerson.lastName].filter(Boolean).join(" ")
         };
 
         try {

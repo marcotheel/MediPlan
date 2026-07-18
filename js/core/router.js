@@ -2,7 +2,7 @@
 const Router = {
   current:"dashboard",
   titles:{
-    dashboard:"Guten Morgen, Mama 👋",
+    dashboard:"Dashboard",
     intakes:"Einnahmen heute",
     cabinet:"Medikamentenschrank",
     calendar:"Kalender",
@@ -28,7 +28,14 @@ const Router = {
     document.querySelectorAll(".nav-button").forEach(b => {
       b.classList.toggle("active", b.dataset.route === route);
     });
-    document.getElementById("pageTitle").textContent = this.titles[route] || "MediPlan";
+    if (route === "dashboard") {
+      const person = DataStore.get("person");
+      document.getElementById("pageTitle").textContent =
+        App.getGreeting(person.firstName || person.displayName);
+    } else {
+      document.getElementById("pageTitle").textContent =
+        this.titles[route] || "MediPlan";
+    }
     const module = this.modules[route];
     if (module?.render) module.render();
     window.scrollTo({top:0, behavior:"smooth"});

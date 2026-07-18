@@ -778,3 +778,26 @@ body.dark .document-form-preview {
 body.dark .follow-up-field {
   background: rgba(10,24,39,.46);
 }
+
+
+/* v0.5.8 – Personenverwaltung */
+.admin-form-section {
+  scroll-margin-top: 20px;
+}
+
+.admin-form-section > h3 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(148,163,184,.2);
+}
+
+.person-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 12px;
+}
+
+@media (max-width: 620px) {
+  .person-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}

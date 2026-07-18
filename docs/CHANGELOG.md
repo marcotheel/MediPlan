@@ -1,17 +1,20 @@
 # Changelog
 
-## v0.5.7
+## v0.5.8
 
-- Dashboard zeigt die nächsten drei Termine
-- Sortierung nach Datum und Uhrzeit
-- Kennzeichnung „Heute“, „Morgen“ oder „In X Tagen“
-- Datum und Uhrzeit werden direkt angezeigt
-- Folgetermine werden gekennzeichnet
-- Button „Alle anzeigen“ öffnet weiterhin den Kalender
-- vergangene Termine ohne Folgetermin werden nicht angezeigt
-- Responsive Darstellung ergänzt
+- Fehler beim Speichern der betreuten Person behoben
+- Vorname und Nachname werden dauerhaft gespeichert
+- dynamische Begrüßung mit dem gespeicherten Vornamen
+- Geburtsdatum ergänzt
+- Geschlecht ergänzt
+- Blutgruppe ergänzt
+- Größe und Gewicht ergänzt
+- Personendaten im Notfallbereich sichtbar
+- Notfallkontakte, Hausarzt, Krankenkasse und Allergien werden gemeinsam gespeichert
+- ältere Personendaten werden automatisch migriert
+- neue Dokumente werden der betreuten Person zugeordnet
 - Service Worker aktualisiert
 
-## v0.5.6
+## v0.5.7
 
-- automatische Terminbereinigung und Folgetermine
+- nächste drei Termine auf dem Dashboard

@@ -1,4 +1,17 @@
 
+const App = {
+  getGreeting(firstName) {
+    const hour = new Date().getHours();
+    const greeting = hour < 11
+      ? "Guten Morgen"
+      : hour < 18
+        ? "Guten Tag"
+        : "Guten Abend";
+
+    return `${greeting}, ${firstName || "Person"} 👋`;
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   DataStore.init();
   SettingsModule.apply();
@@ -17,6 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   Router.init();
   Router.go("dashboard");
+
+  const activePerson = DataStore.get("person");
+  document.getElementById("pageTitle").textContent =
+    App.getGreeting(activePerson.firstName || activePerson.displayName);
 
   document.getElementById("todayLabel").textContent = new Intl.DateTimeFormat("de-DE",{
     weekday:"long",day:"2-digit",month:"long",year:"numeric"

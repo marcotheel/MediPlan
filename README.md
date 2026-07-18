@@ -1,12 +1,24 @@
-# MediPlan v0.5.7 – Nächste Termine
+# MediPlan v0.5.8 – Personenverwaltung
+
+## Behoben
+
+- betreute Person lässt sich ändern
+- Änderung wird dauerhaft gespeichert
+- Name bleibt nach dem Neuladen erhalten
 
 ## Neu
 
-- Dashboard zeigt die nächsten drei Termine
-- Sortierung nach Datum und Uhrzeit
-- Hinweise „Heute“, „Morgen“ oder „In X Tagen“
-- Folgetermine werden markiert
-- responsive Darstellung
+- Vorname
+- Nachname
+- Geburtsdatum
+- Geschlecht
+- Blutgruppe
+- Größe
+- Gewicht
+- dynamische persönliche Begrüßung
+- Personendaten im Notfallbereich
+- Zuordnung neuer Dokumente zur betreuten Person
+- automatische Migration älterer Daten
 
 ## Admin-PIN
 
