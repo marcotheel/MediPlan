@@ -1,17 +1,19 @@
 # Changelog
 
-## v0.5.4
+## v0.5.5
 
-- zweiten Hausarzt entfernt
-- ein Hausarzt mit Vorname, Nachname, Telefonnummer, Praxisname und Adresse
-- zwei Notfallkontakte bleiben erhalten
-- Beziehung zu jedem Notfallkontakt ergänzt
-- Schnellwahltasten für 112, Hausarzt und Kontakt 1 ergänzt
-- Telefonlinks direkt anwählbar
-- Admin-Bereich angepasst
-- automatische Datenmigration ergänzt
+- neuer Bereich „Dokumente & Arztberichte“
+- Kameraaufnahme über Smartphone und Tablet
+- Auswahl vorhandener Bilder
+- Dokumenttyp, Titel, Datum, Arzt/Praxis und Notiz
+- Speicherung großer Dokumentbilder in IndexedDB
+- Dokumentenübersicht mit Vorschaubildern
+- Vollbild-Vorschau
+- Dokumente lokal löschen
+- Speicherung ausschließlich lokal auf dem Gerät
+- Menüpunkt unter „Mehr“
 - Service Worker aktualisiert
 
-## v0.5.3
+## v0.5.4
 
-- zwei Notfallkontakte und zwei Hausärzte ergänzt
+- Notfallbereich mit einem Hausarzt und zwei Notfallkontakten

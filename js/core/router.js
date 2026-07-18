@@ -11,7 +11,8 @@ const Router = {
     "admin-login":"Admin-Bereich",
     admin:"Admin-Dashboard",
     import:"Plan importieren",
-    settings:"Einstellungen"
+    settings:"Einstellungen",
+    documents:"Dokumente & Arztberichte"
   },
   modules:{},
   register(route, module) { this.modules[route] = module; },

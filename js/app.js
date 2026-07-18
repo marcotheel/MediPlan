@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   Router.register("admin",AdminModule);
   Router.register("import",ImporterModule);
   Router.register("settings",SettingsModule);
+  Router.register("documents",DocumentsModule);
 
   Router.init();
   Router.go("dashboard");

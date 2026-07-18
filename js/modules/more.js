@@ -6,6 +6,7 @@ const MoreModule = {
         <div class="page-title"><h2>Mehr</h2><button class="secondary-button" data-route-inline="dashboard">← Zurück</button></div>
         <div class="menu-list">
           <button class="menu-item" data-route-inline="emergency"><span>🆘 Notfallbereich</span><span>›</span></button>
+          <button class="menu-item" data-route-inline="documents"><span>📄 Dokumente & Arztberichte</span><span>›</span></button>
           <button class="menu-item" data-route-inline="import"><span>📷 Plan importieren</span><span>›</span></button>
           <button class="menu-item" data-route-inline="settings"><span>⚙️ Einstellungen & Backup</span><span>›</span></button>
           <button class="menu-item" data-route-inline="admin-login"><span>🔒 Admin-Bereich</span><span>›</span></button>

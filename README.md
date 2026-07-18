@@ -1,13 +1,20 @@
-# MediPlan v0.5.4 – Notfallbereich
+# MediPlan v0.5.5 – Dokumente & Arztberichte
 
 ## Neu
 
-- zwei Notfallkontakte mit Beziehung
-- ein Hausarzt
-- Praxisname und Adresse
-- Schnellwahl für 112, Hausarzt und Kontakt 1
-- direkte Telefonlinks
-- Admin-Bereich angepasst
+- Dokumente über Kamera fotografieren
+- vorhandene Bilder auswählen
+- Dokumenttypen verwalten
+- Titel, Datum, Arzt/Praxis und Notizen
+- lokale IndexedDB-Speicherung
+- Dokumentenvorschau
+- Dokument löschen
+- neuer Bereich unter „Mehr“
+
+## Datenschutz
+
+Dokumente bleiben lokal auf dem verwendeten Gerät und werden nicht automatisch
+auf GitHub oder einen externen Server hochgeladen.
 
 ## Admin-PIN
 
