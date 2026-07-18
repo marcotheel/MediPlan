@@ -9,9 +9,10 @@ const DashboardModule = {
       .sort((a, b) => a.scheduledTime.localeCompare(b.scheduledTime));
     const done = intakes.length - open.length;
     const percent = intakes.length ? Math.round(done / intakes.length * 100) : 100;
-    const todayEvents = events
-      .filter(event => event.date === DataStore.today())
-      .sort((a,b) => a.time.localeCompare(b.time));
+    const upcomingEvents = events
+      .filter(event => event.date >= DataStore.today() || event.followUp)
+      .sort((a,b) => `${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`))
+      .slice(0,3);
 
     const lowStock = meds
       .filter(med => med.stock <= Math.max(med.minStock, 12))
@@ -45,8 +46,8 @@ const DashboardModule = {
 
         <article class="dashboard-stat">
           ${Components.icon("calendar")}
-          <strong>${todayEvents.length}</strong>
-          <p>Termine heute</p>
+          <strong>${upcomingEvents.length}</strong>
+          <p>Nächste Termine</p>
         </article>
 
         <article class="dashboard-stat">
@@ -108,15 +109,19 @@ const DashboardModule = {
             <button class="chip-button" data-route-inline="calendar">Alle anzeigen</button>
           </div>
 
-          ${todayEvents.length ? todayEvents.slice(0,3).map(event => `
-            <div class="dashboard-row">
-              <div class="dashboard-row-time">${event.time}</div>
+          ${upcomingEvents.length ? upcomingEvents.map(event => `
+            <div class="dashboard-row appointment-row">
+              <div class="appointment-date">
+                <strong>${this.relativeDateLabel(event.date)}</strong>
+                <span>${new Date(`${event.date}T00:00:00`).toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"})}</span>
+              </div>
               <div>
                 <h3>${UI.escape(event.title)}</h3>
-                <p>${UI.escape(event.location || "")}</p>
+                <p>${event.time} Uhr${event.location ? ` · ${UI.escape(event.location)}` : ""}</p>
+                ${event.followUp ? `<span class="mds-badge mds-badge--success">Folgetermin</span>` : ""}
               </div>
               <span>›</span>
-            </div>`).join("") : Components.emptyState("Keine Termine","Für heute sind keine Termine eingetragen.")}
+            </div>`).join("") : Components.emptyState("Keine Termine","Es sind keine zukünftigen Termine eingetragen.")}
         </article>
 
         <article class="dashboard-panel">
@@ -141,6 +146,17 @@ const DashboardModule = {
       </section>`;
 
     this.bind();
+  },
+
+  relativeDateLabel(dateString) {
+    const today = new Date(`${DataStore.today()}T00:00:00`);
+    const date = new Date(`${dateString}T00:00:00`);
+    const diff = Math.round((date - today) / 86400000);
+
+    if (diff === 0) return "Heute";
+    if (diff === 1) return "Morgen";
+    if (diff > 1) return `In ${diff} Tagen`;
+    return "Folgetermin";
   },
 
   bind() {

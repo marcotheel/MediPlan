@@ -212,3 +212,38 @@ body:not(.dark) .dashboard-panel {
     grid-column: 2;
   }
 }
+
+
+/* v0.5.7 – Nächste drei Termine */
+.appointment-row {
+  grid-template-columns: 112px 1fr auto;
+}
+
+.appointment-date {
+  display: grid;
+  gap: 4px;
+}
+
+.appointment-date strong {
+  color: var(--mds-color-primary);
+  font-weight: 950;
+}
+
+.appointment-date span {
+  color: var(--mds-color-gray-500);
+  font-size: .9rem;
+}
+
+body.dark .appointment-date span {
+  color: #94a3b8;
+}
+
+@media (max-width: 620px) {
+  .appointment-row {
+    grid-template-columns: 92px 1fr;
+  }
+
+  .appointment-row > :last-child {
+    grid-column: 2;
+  }
+}

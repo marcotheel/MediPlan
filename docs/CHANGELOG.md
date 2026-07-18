@@ -1,16 +1,17 @@
 # Changelog
 
-## v0.5.6
+## v0.5.7
 
-- Termine mit einem Datum vor heute werden automatisch gelöscht
-- Termine vom heutigen Tag bleiben unabhängig von der Uhrzeit erhalten
-- Folgetermine bleiben auch nach Ablauf des Datums gespeichert
-- Terminformular um Auswahl „Folgetermin“ erweitert
-- Folgetermine werden im Kalender gekennzeichnet
-- bestehende Termine werden automatisch um das neue Datenfeld ergänzt
-- Dashboard verwendet nur bereinigte Termindaten
+- Dashboard zeigt die nächsten drei Termine
+- Sortierung nach Datum und Uhrzeit
+- Kennzeichnung „Heute“, „Morgen“ oder „In X Tagen“
+- Datum und Uhrzeit werden direkt angezeigt
+- Folgetermine werden gekennzeichnet
+- Button „Alle anzeigen“ öffnet weiterhin den Kalender
+- vergangene Termine ohne Folgetermin werden nicht angezeigt
+- Responsive Darstellung ergänzt
 - Service Worker aktualisiert
 
-## v0.5.5
+## v0.5.6
 
-- Dokumente und Arztberichte ergänzt
+- automatische Terminbereinigung und Folgetermine

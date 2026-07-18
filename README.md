@@ -1,12 +1,12 @@
-# MediPlan v0.5.6 – Terminbereinigung
+# MediPlan v0.5.7 – Nächste Termine
 
 ## Neu
 
-- vergangene Termine werden automatisch gelöscht
-- Folgetermine bleiben gespeichert
-- Termine von heute werden nicht vorzeitig entfernt
-- Kennzeichnung von Folgeterminen im Kalender
-- Auswahl „Folgetermin“ im Terminformular
+- Dashboard zeigt die nächsten drei Termine
+- Sortierung nach Datum und Uhrzeit
+- Hinweise „Heute“, „Morgen“ oder „In X Tagen“
+- Folgetermine werden markiert
+- responsive Darstellung
 
 ## Admin-PIN
 
