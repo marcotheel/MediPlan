@@ -1,16 +1,16 @@
 # Changelog
 
-## v0.5.2
+## v0.5.3
 
-- Dark-Mode-Kontrast der unteren Navigation korrigiert
-- schwarze Navigationsschrift durch gut lesbare helle Schrift ersetzt
-- Emoji-Navigation durch einheitliche SVG-Icons ersetzt
-- aktiver Navigationspunkt mit Türkis/Grün-Verlauf hervorgehoben
-- neues Dashboard-Layout nach Corporate-Design-Mockup umgesetzt
-- kompakte Übersichts-, Termin-, Einnahme- und Bestandskarten ergänzt
-- Responsive Layout für Desktop, Tablet und Smartphone erweitert
+- Notfallbereich um zwei Notfallkontakte erweitert
+- beide Kontakte besitzen Vorname, Nachname und Telefonnummer
+- Notfallbereich um zwei Hausarzt-Einträge erweitert
+- beide Hausärzte besitzen Vorname, Nachname und Telefonnummer
+- Telefonnummern sind auf unterstützten Geräten direkt anwählbar
+- Kontakte und Hausärzte im Admin-Bereich bearbeitbar
+- bestehende Daten werden beim Start automatisch migriert
 - Service Worker aktualisiert
 
-## v0.5.1
+## v0.5.2
 
-- MediPlan Design System finalisiert
+- neues Dashboard und Dark-Mode-Navigation

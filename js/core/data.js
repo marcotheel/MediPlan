@@ -6,9 +6,15 @@ const DataStore = {
       name: "Mama",
       avatar: "",
       allergies: "Keine hinterlegt",
-      emergencyContact: "Noch nicht hinterlegt",
-      doctor: "Dr. Thomas Müller",
-      insurance: "Noch nicht hinterlegt"
+      insurance: "Noch nicht hinterlegt",
+      emergencyContacts: [
+        { id: "contact_1", firstName: "", lastName: "", phone: "" },
+        { id: "contact_2", firstName: "", lastName: "", phone: "" }
+      ],
+      doctors: [
+        { id: "doctor_1", firstName: "Thomas", lastName: "Müller", phone: "" },
+        { id: "doctor_2", firstName: "", lastName: "", phone: "" }
+      ]
     },
     medications: [
       { id:"med_ram", name:"Ramipril", strength:"5 mg", form:"Tablette", description:"Weiße Tablette", dosage:"1-0-0", time:"08:00", amount:1, unit:"Tablette", stock:84, minStock:10, expiry:"2027-04-30", active:true, pill:"white", image:"" },
@@ -36,6 +42,35 @@ const DataStore = {
         Storage.set(this.key(name), structuredClone(this.defaults[name]));
       }
     });
+
+    const person = this.get("person");
+    let changed = false;
+
+    if (!Array.isArray(person.emergencyContacts)) {
+      person.emergencyContacts = [
+        { id:"contact_1", firstName:"", lastName:"", phone:"" },
+        { id:"contact_2", firstName:"", lastName:"", phone:"" }
+      ];
+      changed = true;
+    }
+
+    if (!Array.isArray(person.doctors)) {
+      const oldDoctor = String(person.doctor || "").trim();
+      const parts = oldDoctor.replace(/^Dr\.\s*/i, "").split(/\s+/);
+      person.doctors = [
+        {
+          id:"doctor_1",
+          firstName:parts.length > 1 ? parts.slice(0,-1).join(" ") : "",
+          lastName:parts.length ? parts[parts.length-1] : "",
+          phone:""
+        },
+        { id:"doctor_2", firstName:"", lastName:"", phone:"" }
+      ];
+      changed = true;
+    }
+
+    if (changed) this.set("person", person);
+
     this.ensureTodayIntakes();
   },
 
@@ -66,6 +101,35 @@ const DataStore = {
 
   resetToday() {
     Storage.remove(this.key(`intakes_${this.today()}`));
+
+    const person = this.get("person");
+    let changed = false;
+
+    if (!Array.isArray(person.emergencyContacts)) {
+      person.emergencyContacts = [
+        { id:"contact_1", firstName:"", lastName:"", phone:"" },
+        { id:"contact_2", firstName:"", lastName:"", phone:"" }
+      ];
+      changed = true;
+    }
+
+    if (!Array.isArray(person.doctors)) {
+      const oldDoctor = String(person.doctor || "").trim();
+      const parts = oldDoctor.replace(/^Dr\.\s*/i, "").split(/\s+/);
+      person.doctors = [
+        {
+          id:"doctor_1",
+          firstName:parts.length > 1 ? parts.slice(0,-1).join(" ") : "",
+          lastName:parts.length ? parts[parts.length-1] : "",
+          phone:""
+        },
+        { id:"doctor_2", firstName:"", lastName:"", phone:"" }
+      ];
+      changed = true;
+    }
+
+    if (changed) this.set("person", person);
+
     this.ensureTodayIntakes();
   },
 

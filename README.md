@@ -1,12 +1,13 @@
-# MediPlan v0.5.2 – UI Update
+# MediPlan v0.5.3 – Notfallkontakte
 
 ## Neu
 
-- vollständig lesbare Dark-Mode-Navigation
-- SVG-Icons statt Emojis in der Hauptnavigation
-- neues Dashboard im MediPlan Corporate Design
-- responsive Übersichtsbereiche
-- verbesserter Kontrast und aktive Zustände
+- zwei Notfallkontakte
+- zwei Hausarzt-Einträge
+- Vorname, Nachname und Telefonnummer
+- direkte Telefonlinks
+- Bearbeitung im Admin-Bereich
+- automatische Migration vorhandener Daten
 
 ## Admin-PIN
 

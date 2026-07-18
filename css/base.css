@@ -475,3 +475,74 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 .time-badge {
   color: var(--brand-teal);
 }
+
+
+/* v0.5.3 – emergency contacts */
+.contact-details {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.contact-details > div {
+  display: grid;
+  grid-template-columns: 105px 1fr;
+  gap: 12px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid rgba(148,163,184,.18);
+}
+
+.contact-details > div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.contact-details dt {
+  font-weight: 850;
+  opacity: .68;
+}
+
+.contact-details dd {
+  margin: 0;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.phone-link {
+  color: var(--mds-color-primary);
+  text-decoration: none;
+  font-weight: 950;
+}
+
+.phone-link:hover {
+  text-decoration: underline;
+}
+
+.emergency-call-button {
+  width: 100%;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-form-section {
+  padding: 18px;
+  border-radius: var(--mds-radius-lg);
+  border: 1px solid rgba(148,163,184,.2);
+}
+
+.admin-form-section h3 {
+  margin-top: 0;
+}
+
+body.dark .admin-form-section {
+  background: rgba(10,24,39,.5);
+}
+
+@media (max-width: 520px) {
+  .contact-details > div {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+}

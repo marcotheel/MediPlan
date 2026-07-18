@@ -144,20 +144,120 @@ const AdminModule = {
   },
 
   renderPerson() {
-    const p = DataStore.get("person");
+    const person = DataStore.get("person");
+    const contacts = Array.isArray(person.emergencyContacts)
+      ? person.emergencyContacts.slice(0,2)
+      : [];
+    const doctors = Array.isArray(person.doctors)
+      ? person.doctors.slice(0,2)
+      : [];
+
+    while (contacts.length < 2) {
+      contacts.push({id:`contact_${contacts.length+1}`,firstName:"",lastName:"",phone:""});
+    }
+    while (doctors.length < 2) {
+      doctors.push({id:`doctor_${doctors.length+1}`,firstName:"",lastName:"",phone:""});
+    }
+
     document.getElementById("adminContent").innerHTML = `
       <form id="personForm" class="form-grid">
-        <div class="form-field"><label>Name</label><input name="name" value="${UI.escape(p.name)}"></div>
-        <div class="form-field"><label>Allergien</label><textarea name="allergies">${UI.escape(p.allergies)}</textarea></div>
-        <div class="form-field"><label>Notfallkontakt</label><input name="emergencyContact" value="${UI.escape(p.emergencyContact)}"></div>
-        <div class="form-field"><label>Hausarzt</label><input name="doctor" value="${UI.escape(p.doctor)}"></div>
-        <div class="form-field"><label>Krankenkasse</label><input name="insurance" value="${UI.escape(p.insurance)}"></div>
-        <div class="form-actions"><button class="primary-button">Speichern</button></div>
+        <div class="form-field">
+          <label>Name der betreuten Person</label>
+          <input name="name" value="${UI.escape(person.name)}">
+        </div>
+
+        <section class="admin-form-section">
+          <h3>Notfallkontakt 1</h3>
+          <div class="form-grid two">
+            <div class="form-field"><label>Vorname</label><input name="contact1FirstName" value="${UI.escape(contacts[0].firstName)}"></div>
+            <div class="form-field"><label>Nachname</label><input name="contact1LastName" value="${UI.escape(contacts[0].lastName)}"></div>
+          </div>
+          <div class="form-field"><label>Telefonnummer</label><input type="tel" name="contact1Phone" value="${UI.escape(contacts[0].phone)}"></div>
+        </section>
+
+        <section class="admin-form-section">
+          <h3>Notfallkontakt 2</h3>
+          <div class="form-grid two">
+            <div class="form-field"><label>Vorname</label><input name="contact2FirstName" value="${UI.escape(contacts[1].firstName)}"></div>
+            <div class="form-field"><label>Nachname</label><input name="contact2LastName" value="${UI.escape(contacts[1].lastName)}"></div>
+          </div>
+          <div class="form-field"><label>Telefonnummer</label><input type="tel" name="contact2Phone" value="${UI.escape(contacts[1].phone)}"></div>
+        </section>
+
+        <section class="admin-form-section">
+          <h3>Hausarzt 1</h3>
+          <div class="form-grid two">
+            <div class="form-field"><label>Vorname</label><input name="doctor1FirstName" value="${UI.escape(doctors[0].firstName)}"></div>
+            <div class="form-field"><label>Nachname</label><input name="doctor1LastName" value="${UI.escape(doctors[0].lastName)}"></div>
+          </div>
+          <div class="form-field"><label>Telefonnummer</label><input type="tel" name="doctor1Phone" value="${UI.escape(doctors[0].phone)}"></div>
+        </section>
+
+        <section class="admin-form-section">
+          <h3>Hausarzt 2</h3>
+          <div class="form-grid two">
+            <div class="form-field"><label>Vorname</label><input name="doctor2FirstName" value="${UI.escape(doctors[1].firstName)}"></div>
+            <div class="form-field"><label>Nachname</label><input name="doctor2LastName" value="${UI.escape(doctors[1].lastName)}"></div>
+          </div>
+          <div class="form-field"><label>Telefonnummer</label><input type="tel" name="doctor2Phone" value="${UI.escape(doctors[1].phone)}"></div>
+        </section>
+
+        <div class="form-field">
+          <label>Allergien</label>
+          <textarea name="allergies">${UI.escape(person.allergies)}</textarea>
+        </div>
+
+        <div class="form-field">
+          <label>Krankenkasse</label>
+          <input name="insurance" value="${UI.escape(person.insurance)}">
+        </div>
+
+        <div class="form-actions">
+          <button class="primary-button">Personendaten speichern</button>
+        </div>
       </form>`;
-    document.getElementById("personForm").addEventListener("submit",e=>{
-      e.preventDefault(); const f=new FormData(e.currentTarget);
-      DataStore.set("person",{...p,name:f.get("name"),allergies:f.get("allergies"),emergencyContact:f.get("emergencyContact"),doctor:f.get("doctor"),insurance:f.get("insurance")});
-      UI.toast("Personendaten gespeichert.");
+
+    document.getElementById("personForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const form = new FormData(event.currentTarget);
+
+      const updatedPerson = {
+        ...person,
+        name: form.get("name"),
+        allergies: form.get("allergies"),
+        insurance: form.get("insurance"),
+        emergencyContacts: [
+          {
+            id: contacts[0].id || "contact_1",
+            firstName: form.get("contact1FirstName"),
+            lastName: form.get("contact1LastName"),
+            phone: form.get("contact1Phone")
+          },
+          {
+            id: contacts[1].id || "contact_2",
+            firstName: form.get("contact2FirstName"),
+            lastName: form.get("contact2LastName"),
+            phone: form.get("contact2Phone")
+          }
+        ],
+        doctors: [
+          {
+            id: doctors[0].id || "doctor_1",
+            firstName: form.get("doctor1FirstName"),
+            lastName: form.get("doctor1LastName"),
+            phone: form.get("doctor1Phone")
+          },
+          {
+            id: doctors[1].id || "doctor_2",
+            firstName: form.get("doctor2FirstName"),
+            lastName: form.get("doctor2LastName"),
+            phone: form.get("doctor2Phone")
+          }
+        ]
+      };
+
+      DataStore.set("person", updatedPerson);
+      UI.toast("Kontakte und Hausärzte wurden gespeichert.");
     });
   }
 };
